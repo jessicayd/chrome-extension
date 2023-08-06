@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="current">
-        <h1 class="time">1:00 AM</h1>
-        <h2 class="date">sunday, august 6</h2>
+    <div id="current">
+        <h1 id="time"></h1>
+        <h1 id="ampm"></h1>
     </div>
-    <div class="search">
-        <input type="text" id="searchInput" class="search-bar" placeholder="search the web"> 
-    </div>
-    <div class="snake">Snake Placeholder</div>
+    <h2 id="date"></h2>
+    <form method="GET" action="https://www.google.com/search">
+        <input id="search-bar" name="q" type="text" autocomplete="off" placeholder="search the web">
+        <img src="images/search.png" id="search-icon" />
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
