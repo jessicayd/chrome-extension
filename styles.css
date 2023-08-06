@@ -69,3 +69,22 @@ form {
     margin-top: 30px;
     text-align: center;
 }
+
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-button {
+    display:none;
+}
+
+.icon-wrapper:hover .edit-button {
+    display: block;
+} 
+
+.icon-image {
+    width:50px;
+}
