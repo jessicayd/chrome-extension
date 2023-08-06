@@ -48,10 +48,11 @@ form {
     background-color: rgb(229,219,209);
     border: none;
     border-radius: 20px;
+    color: rgb(147, 127, 120);
 }
 
 ::placeholder {
-    color: rgb(147, 127, 120);
+    color: #A99486;
 }
 
 #search-icon {
