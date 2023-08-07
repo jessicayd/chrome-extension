@@ -2,7 +2,7 @@
 
 let gameOver = false;
 let score = 0;
-let tailLength = 2;
+let tailLength = 3;
 
 let tileCount = 20;
 let tileSize= 18;
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         checkApple()
         drawApple();
         drawScore();
-        setTimeout(drawGame, 1000/4)
+        setTimeout(drawGame, 1000/6)
     }
 
     function startGame() {
