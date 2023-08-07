@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (gameOver) {
             snake.length = 0; 
             score = 0;
-            tailLength = 2;
+            tailLength = 3;
             headX = 5;
             headY = 5;
             xvelocity = 0;
