@@ -1,4 +1,21 @@
 // snake game
+
+let gameOver = false;
+let score = 0;
+let tailLength = 2;
+
+let tileCount = 20;
+let tileSize= 18;
+let headX = 5;
+let headY = 5;
+
+let xvelocity = 0;
+let yvelocity = 0;
+
+let appleX = 15;
+let appleY = 15;
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const canvas = document.getElementById('snake-game'); 
     canvas.setAttribute("tabindex", 0);
@@ -10,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /// initializing and drawing snake game
     function drawGame() {
+        
         if (gameOver) {
             // edits the game over screen
             ctx.fillStyle = "rgb(147, 127, 120)";
@@ -34,16 +52,18 @@ document.addEventListener("DOMContentLoaded", function() {
         checkApple()
         drawApple();
         drawScore();
-        setTimeout(drawGame, 1000/5)
+        setTimeout(drawGame, 1000/4)
     }
 
     function startGame() {
+        score = 0
         drawGame();
     }
 
     const startButton = document.getElementById("start-button");
     startButton.addEventListener("click", function() {
         startButton.style.display = "none"; 
+        score = 0;
         reset(false);
         startGame();
         xvelocity = 1;
@@ -54,12 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fillStyle = "rgb(229,219,209)"
         ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight)
     }
-
-    let tileCount = 20;
-    let tileSize= 18;
-    let headX = 5;
-    let headY = 5;
-
 
     function drawSnake(){
         ctx.fillStyle="orange";
@@ -78,8 +92,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     /// making snake move
-    let xvelocity = 0;
-    let yvelocity = 0;
 
     canvas.addEventListener('keydown', keyDown);
     function keyDown(event) {
@@ -99,15 +111,15 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.keyCode == 38 || event.key === "w") {
             if (yvelocity == 1)
                 return;
-            yvelocity = -1; // up
             xvelocity = 0;
+            yvelocity = -1; // up
         }
         
         if (event.keyCode == 40 || event.key === "s") {
             if (yvelocity == -1)
                 return;
-            yvelocity = 1; // down
             xvelocity = 0;
+            yvelocity = 1; // down
         }
 
         if (event.keyCode == 37 || event.key === "a") {
@@ -132,8 +144,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // food
-    let appleX = 5;
-    let appleY = 5;
 
     function drawApple(){
         ctx.fillStyle = "red";
@@ -147,10 +157,9 @@ document.addEventListener("DOMContentLoaded", function() {
             this.y=y;
         }  
     }
-    let tailLength = 2;
 
-    function checkApple(){
-        if(appleX == headX && appleY == headY){
+    function checkApple() {
+        if(appleX === headX && appleY === headY){
             appleX = Math.floor(Math.random()*tileCount);
             appleY = Math.floor(Math.random()*tileCount);
             tailLength++;
@@ -159,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // score
-    let score = 0;
 
     function drawScore() {
         ctx.fillStyle="rgb(147, 127, 120)"
@@ -204,5 +212,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    drawGame();
+    startGame();
 });
