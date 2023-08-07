@@ -1,12 +1,10 @@
 body {
     background-color: #F4F1E7;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 11% 60% 11%;
     grid-template-rows: 1fr 1fr;
-    grid-column-gap: 5%;
-    justify-items: center;
+    grid-column-gap: 9%;
     text-align:center;
-    align-content: center;
 }
 
 #middle {
@@ -65,8 +63,8 @@ form {
 
 #search-icon {
     position: absolute;
-    left: 15px;
-    top:20%;
+    left: 38px;
+    top:22%;
     height:50px;
     opacity: 40%;
 }
@@ -78,7 +76,7 @@ form {
     border: solid;
     border-color: rgb(147, 127, 120);
     height: 45vh;
-    width: 80%;
+    width: 70%;
     margin:auto;
     margin-top:40px;
 }
@@ -90,7 +88,7 @@ form {
 }
 
 .icon-container {
-    margin: 50px 5px 0 5px;
+    margin: 40px 5px 0 5px;
 }
 
 .edit-button {
