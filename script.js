@@ -32,7 +32,7 @@ icons
 > > > icon-image
 > > edit-button 
 */
-function createIcon(url, containerName) {
+function createIcon(url, containerName, button) {
     let iconContainer = document.getElementById(containerName);
 
     let iconWrapper = document.createElement('div');
@@ -49,15 +49,15 @@ function createIcon(url, containerName) {
 
     let edit = document.createElement('button');
     edit.className = 'edit-button';
-    edit.textContent = 'edit';
+    edit.textContent = button;
 
-    edit.addEventListener('click', function (event) {
-        event.preventDefault();
-        let newLink = prompt('Edit link: ');
-        if (isValidUrl(newLink)) {
-            link.href = newLink;
-        }
-    });
+    // edit.addEventListener('click', function (event) {
+    //     event.preventDefault();
+    //     let newLink = prompt('Edit link: ');
+    //     if (isValidUrl(newLink)) {
+    //         link.href = newLink;
+    //     }
+    // });
 
     iconWrapper.appendChild(link);
     iconWrapper.appendChild(edit);
@@ -75,10 +75,11 @@ function isValidUrl(str) {
 }
 
 // creating icons
-createIcon('https://www.google.com/search?q=weather+28226', 'icons');
-createIcon('https://github.com/jessicayd/chrome-extension', 'icons');
-createIcon('https://google.com', 'icons');
+createIcon('https://calendar.google.com/calendar/u/1/r/week', 'icons', 'gcal');
+createIcon('https://www.google.com/search?q=weather+28226', 'icons', 'weather');
+createIcon('https://www.instagram.com/?hl=en', 'icons', 'instagram');
 
-createIcon('https://www.google.com/search?q=weather+28226', 'icons2');
-createIcon('https://github.com/jessicayd/chrome-extension', 'icons2');
-createIcon('https://google.com', 'icons2');
+createIcon('https://github.com/jessicayd/chrome-extension', 'icons2', 'this repo');
+createIcon('https://docs.google.com/spreadsheets/d/1uPWKV088TNfjcF_GKqTv40gJiJocHrz7PU7pu-o3KWc/edit#gid=0', 'icons2', 'leetcode sheet');
+createIcon('https://docs.google.com/spreadsheets/d/1EQUbkiJtCM5tnc8N7ylGiUYoL2723f6fdLcnOQgjtL0/edit#gid=0', 'icons2', 'code life tg');
+createIcon('https://neetcode.io/practice', 'icons2', 'neetcode');
