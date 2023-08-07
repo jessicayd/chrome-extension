@@ -155,12 +155,26 @@ button:active {
     border-radius:10px;
     box-shadow: 0px 2px 5px rgba(108, 99, 90, 0.6);
 }
-.icon-image:hover {
+.icon-image:hover, #left:hover, #right:hover {
     opacity:60%;
 }
 
-.icon-image:active {
+.icon-image:active, #left:active, #right:active {
     opacity:50%;
+}
+
+.slides {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#left, #right {
+    margin: 0 3em;
+    border: none;
+    outline: none;
+    background-color: #F4F1E7;
+    color: #A99486;
 }
 
 
