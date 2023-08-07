@@ -54,6 +54,7 @@ form {
     border: none;
     border-radius: 20px;
     color: rgb(147, 127, 120);
+    box-shadow: 0px 5px 10px rgba(108, 99, 90, 0.7);
 }
 
 ::placeholder {
@@ -110,6 +111,7 @@ form {
     height:75px;
     opacity:75%;
     border-radius:10px;
+    box-shadow: 0px 2px 5px rgba(108, 99, 90, 0.6);
 }
 .icon-image:hover {
     opacity:60%;
