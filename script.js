@@ -7,11 +7,11 @@ function setTime(){
 
     let hours = date.getHours();
     let ampm = "AM";
-    if (hours == 0) hours = 12;
-    if (hours > 12) {
+    if (hours >= 12) {
         hours -= 12;
         ampm = "PM";
     }
+    if (hours == 0) hours = 12;
     let second = date.getSeconds();
     let minute = date.getMinutes();
     document.getElementById("time").innerHTML = `${hours}:${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}`;
