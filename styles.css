@@ -2,7 +2,7 @@ body {
     background-color: #F4F1E7;
     display: grid;
     grid-template-columns: 15% 60% 15%;
-    grid-gap: 5%;
+    grid-column-gap: 5%;
     justify-items: center;
     text-align:center;
     align-content: center;
@@ -34,7 +34,6 @@ h2 {
 
 /* search bar */
 form {
-    margin-top:10px;
     position: relative;
 }
 
@@ -68,12 +67,15 @@ form {
 
 
 /* snake game */
-#snake {
-    background-color: #E1D1C6;
-    height: 40vh;
-    width: 50%;
-    margin-top: 30px;
-    text-align: center;
+#snake-game {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    background-color: rgb(229,219,209);
+    border: solid;
+    border-color: rgb(147, 127, 120);
+    height: 45vh;
+    width: 40%;
+    margin-top:10px;
 }
 
 
@@ -83,7 +85,7 @@ form {
 }
 
 .icon-container {
-    margin: 50px 10px 0 10px;
+    margin: 50px 5px 0 5px;
 }
 
 .edit-button {
@@ -93,7 +95,7 @@ form {
     background-color: rgb(229,219,209);
     color: rgb(147, 127, 120);
     border: none;
-    padding: 5px 10px; 
+    padding: 2px 5px; 
     border-radius: 5px; 
     font-size: 10px; 
 }
@@ -104,8 +106,8 @@ form {
 
 .icon-image {
     margin:0;
-    width:75px;
-    height:75px;
+    width:70px;
+    height:70px;
     opacity:90%;
     border-radius:10px;
 }
