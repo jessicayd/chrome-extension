@@ -1,13 +1,14 @@
 body {
-    /* background-image: url("images/background.png");
-    background-size: cover; */
     background-color: #F4F1E7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 15% 60% 15%;
+    grid-gap: 5%;
+    justify-items: center;
+    text-align:center;
+    align-content: center;
 }
 
+/* time */
 h1, h2 {
     font-family: 'Inter', sans-serif;
     color: #A99486;
@@ -30,6 +31,8 @@ h2 {
     margin-right: 20px;
 }
 
+
+/* search bar */
 form {
     margin-top:10px;
     position: relative;
@@ -63,6 +66,8 @@ form {
     opacity: 40%;
 }
 
+
+/* snake game */
 #snake {
     background-color: #E1D1C6;
     height: 40vh;
@@ -72,20 +77,42 @@ form {
 }
 
 
+/* icons */
+.icon-wrapper {
+    margin-bottom:10px;
+}
+
 .icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 50px 10px 0 10px;
 }
 
 .edit-button {
-    display:none;
+    opacity:0%;
+    margin: 0 auto;
+    display:block;
+    background-color: rgb(229,219,209);
+    color: rgb(147, 127, 120);
+    border: none;
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 10px; 
 }
 
 .icon-wrapper:hover .edit-button {
-    display: block;
+    opacity:100%;
 } 
 
 .icon-image {
-    width:50px;
+    margin:0;
+    width:75px;
+    height:75px;
+    opacity:90%;
+    border-radius:10px;
+}
+.icon-image:hover {
+    opacity:75%;
+}
+
+.icon-image:active {
+    opacity:60%;
 }
