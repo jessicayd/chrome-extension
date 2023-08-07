@@ -42,9 +42,8 @@ form {
 
 #search-bar {
     width: 50vw;
-    padding: 0.5em 10px;
-    padding-left: 75px;
-    height: 60px;
+    padding: 0.5em 3em;
+    height: 50px;
 
     font-family: 'Inter', sans-serif;
     font-size: 25px;
@@ -63,21 +62,41 @@ form {
 
 #search-icon {
     position: absolute;
-    left: 38px;
-    top:22%;
+    left: 1em;
+    top: 22%;
     height:50px;
     opacity: 40%;
 }
 
 
 /* snake game */
-#snake-game {
-    background-color: rgb(229,219,209);
-    height: 45vh;
-    width: 70%;
-    margin:auto;
-    margin-top:40px;
+.snake-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
+
+#snake-game {
+    margin: 35px auto;
+    border: 1px solid black;
+}
+
+#start-button {
+    padding: 0.75em 1.5em;
+    background-color: #D4BFB1;
+    color: #A99486;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 
 /* icons */
@@ -143,3 +162,9 @@ button:active {
 .icon-image:active {
     opacity:50%;
 }
+
+
+
+
+
+
