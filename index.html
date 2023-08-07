@@ -14,19 +14,19 @@
 <body>
     <div class="icon-container" id="icons"></div>
     <div id="middle">
-    <div id="mainContent">
-        <div id="current">
-            <h1 id="time">00:00:00</h1>
-            <h1 id="ampm">AM</h1>
+        <div id="mainContent">
+            <div id="current">
+                <h1 id="time">00:00:00</h1>
+                <h1 id="ampm">AM</h1>
+            </div>
+            <h2 id="date">monday, january 1</h2>
+            <form method="GET" action="https://www.google.com/search">
+                <input id="search-bar" name="q" type="text" autocomplete="off" placeholder="search the web">
+                <img src="images/search.png" id="search-icon" />
+            </form>
         </div>
-        <h2 id="date">monday, january 1</h2>
-        <form method="GET" action="https://www.google.com/search">
-            <input id="search-bar" name="q" type="text" autocomplete="off" placeholder="search the web">
-            <img src="images/search.png" id="search-icon" />
-        </form>
+        <div id="snake-game"></div>
     </div>
-    <div id="snake-game"></div>
-</div>
     <div class="icon-container" id="icons2"></div>
     <script src="script.js"></script>
 </body>
