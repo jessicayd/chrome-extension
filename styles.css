@@ -1,53 +1,118 @@
 body {
-    background-image: url("images/background.png");
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:  0;
-    flex-direction: column;
+    background-color: #F4F1E7;
+    display: grid;
+    grid-template-columns: 15% 60% 15%;
+    grid-gap: 5%;
+    justify-items: center;
+    text-align:center;
+    align-content: center;
 }
 
+/* time */
 h1, h2 {
     font-family: 'Inter', sans-serif;
-    color: #737373;
+    color: #A99486;
     margin-top:0;
 }
 
 h1 {
     margin-top: 80px;
     margin-bottom:0;
-    font-size: 3.75em;
+    font-size: 70px;
+    display: inline-block;
+}
+
+h2 {
+    font-size:30px;
+}
+
+#time {
+    font-family: Menlo;
+    margin-right: 20px;
 }
 
 
-.current {
-    text-align: center;
+/* search bar */
+form {
+    margin-top:10px;
+    position: relative;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.search-bar {
-    width: 70vw;
+#search-bar {
+    width: 50vw;
     padding: 0.5em 10px;
+    padding-left: 75px;
+    height: 60px;
+
     font-family: 'Inter', sans-serif;
-    font-size: 1.5em;
-    background-color: #DEDEDEb3;
+    font-size: 25px;
+    font-weight: 400;
+
+    background-color: rgb(229,219,209);
     border: none;
-    outline: none;
-    border-radius: 24px;
-    color: #737373;
+    border-radius: 20px;
+    color: rgb(147, 127, 120);
 }
 
-.snake {
-    background-color: #DEDEDEb3;
+::placeholder {
+    color: #A99486;
+}
+
+#search-icon {
+    position: absolute;
+    left: 15px;
+    top:20%;
+    height:50px;
+    opacity: 40%;
+}
+
+
+/* snake game */
+#snake {
+    background-color: #E1D1C6;
     height: 40vh;
     width: 50%;
     margin-top: 30px;
     text-align: center;
+}
+
+
+/* icons */
+.icon-wrapper {
+    margin-bottom:10px;
+}
+
+.icon-container {
+    margin: 50px 10px 0 10px;
+}
+
+.edit-button {
+    opacity:0%;
+    margin: 0 auto;
+    display:block;
+    background-color: rgb(229,219,209);
+    color: rgb(147, 127, 120);
+    border: none;
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 10px; 
+}
+
+.icon-wrapper:hover .edit-button {
+    opacity:100%;
+} 
+
+.icon-image {
+    margin:0;
+    width:75px;
+    height:75px;
+    opacity:90%;
+    border-radius:10px;
+}
+.icon-image:hover {
+    opacity:75%;
+}
+
+.icon-image:active {
+    opacity:60%;
 }
