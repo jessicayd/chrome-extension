@@ -28,43 +28,114 @@ setInterval(function() {
 function to create an icon
 icons
 > icon-wrapper
+> > icon-name
 > > icon-link
 > > > icon-image
-> > edit-button 
+> > button-wrapper
+> > > edit-button 
+> > > remove-button 
 */
-function createIcon(url, containerName, button) {
+function createIcon(url, containerName, id, name) {
+    if (containerName == "icons") currIconLeft++;
+    else currIconRight++;
+
     let iconContainer = document.getElementById(containerName);
 
     let iconWrapper = document.createElement('div');
     iconWrapper.className = 'icon-wrapper';
 
+    // displays title of bookmark at the top
+    let iconName = document.createElement('p');
+    iconName.className = "icon-name";
+    iconName.setAttribute("contenteditable", true);
+    if (localStorage.getItem(`${id}_name`) == null || localStorage.getItem(`${id}_name`) == 'null') {
+        localStorage.setItem(`${id}_name`, name);
+    }
+    iconName.innerHTML = localStorage.getItem(`${id}_name`);
+
+    iconName.addEventListener('input', function(){
+        localStorage.setItem(`${id}_name`,this.innerHTML);
+     })
+
+    // actual icon that links to url
     let link = document.createElement('a');
     link.className = 'icon-link';
-    link.href = url;
+    if (localStorage.getItem(`${id}_url`) == null || localStorage.getItem(`${id}_url`) == 'null') {
+        link.href = url;
+        localStorage.setItem(`${id}_url`, url)
+    }
+    link.href = localStorage.getItem(`${id}_url`);
 
     let icon = document.createElement('img');
     icon.src = 'images/icon.png';
     icon.className = 'icon-image';
     icon.alt = 'icon'; 
 
+    // buttons
+    let buttonWrap = document.createElement('div');
+    buttonWrap.className = 'button-wrapper';
+
+    // edit/displays url of button
     let edit = document.createElement('button');
     edit.className = 'edit-button';
-    edit.textContent = button;
+    edit.textContent = 'edit';
 
-    // edit.addEventListener('click', function (event) {
-    //     event.preventDefault();
-    //     let newLink = prompt('Edit link: ');
-    //     if (isValidUrl(newLink)) {
-    //         link.href = newLink;
-    //     }
-    // });
+    edit.addEventListener('click', function (event) {
+        event.preventDefault();
+        let newLink = prompt(`${link.href} \nEdit link: `);
+        if (isValidUrl(newLink)) {
+            link.href = newLink;
+        }
+        localStorage.setItem(`${id}_url`, newLink);
+    });
 
+    // removes button
+    let remove = document.createElement('button');
+    remove.className = 'remove-button';
+    remove.textContent = 'x';
+
+    remove.addEventListener('click', function (event) {
+        event.preventDefault();
+        localStorage.removeItem(`${id}`);
+        localStorage.removeItem(`${id}_name`);
+        localStorage.removeItem(`${id}_url`);
+        iconWrapper.remove();
+        if (containerName=='icons') {
+            currIconLeft--;
+            for (let i = parseInt(id.substring(1)); i < currIconLeft; i++) {
+                localStorage.setItem(`l${i}`,localStorage.getItem(`l${i+1}`));
+                localStorage.setItem(`l${i}_url`,localStorage.getItem(`l${i+1}_url`));
+                localStorage.setItem(`l${i}_name`,localStorage.getItem(`l${i+1}_name`));
+            }
+            localStorage.removeItem(`l${currIconLeft}`);
+            localStorage.removeItem(`l${currIconLeft}_name`);
+            localStorage.removeItem(`l${currIconLeft}_url`);
+        }
+        else {
+            currIconRight--;
+            for (let i = parseInt(id.substring(1)); i < currIconRight; i++) {
+                localStorage.setItem(`r${i}`,localStorage.getItem(`r${i+1}`));
+                localStorage.setItem(`r${i}_url`,localStorage.getItem(`r${i+1}_url`));
+                localStorage.setItem(`r${i}_name`,localStorage.getItem(`r${i+1}_name`));
+            }
+            localStorage.removeItem(`r${currIconRight}`);
+            localStorage.removeItem(`r${currIconRight}_name`);
+            localStorage.removeItem(`r${currIconRight}_url`);
+        }
+    });
+
+    // add to html
+    buttonWrap.appendChild(edit);
+    buttonWrap.appendChild(remove);
+    iconWrapper.appendChild(iconName);
     iconWrapper.appendChild(link);
-    iconWrapper.appendChild(edit);
+    iconWrapper.appendChild(buttonWrap);
     link.appendChild(icon);
-    iconContainer.appendChild(iconWrapper);
+    iconContainer.insertBefore(iconWrapper, iconContainer.lastElementChild);
+    localStorage.setItem(`${id}`, "true");
 }
 
+// validates a url
 function isValidUrl(str) {
     try {
         const newUrl = new URL(str);
@@ -74,12 +145,30 @@ function isValidUrl(str) {
     }
 }
 
-// creating icons
-createIcon('https://calendar.google.com/calendar/u/1/r/week', 'icons', 'gcal');
-createIcon('https://www.google.com/search?q=weather+28226', 'icons', 'weather');
-createIcon('https://www.instagram.com/?hl=en', 'icons', 'instagram');
+// keeping track of # of bookmarks
+const maxIcon = 6;
+let currIconLeft = 0;
+let currIconRight = 0;
 
-createIcon('https://github.com/jessicayd/chrome-extension', 'icons2', 'this repo');
-createIcon('https://docs.google.com/spreadsheets/d/1uPWKV088TNfjcF_GKqTv40gJiJocHrz7PU7pu-o3KWc/edit#gid=0', 'icons2', 'leetcode sheet');
-createIcon('https://docs.google.com/spreadsheets/d/1EQUbkiJtCM5tnc8N7ylGiUYoL2723f6fdLcnOQgjtL0/edit#gid=0', 'icons2', 'code life tg');
-createIcon('https://neetcode.io/practice', 'icons2', 'neetcode');
+// add buttons
+let leftAdd = document.getElementById('leftAdd');
+let rightAdd = document.getElementById('rightAdd');
+
+leftAdd.addEventListener('click', function() {
+    if (currIconLeft >= maxIcon) return;
+    createIcon('https://google.com', 'icons', `l${currIconLeft}`, 'link');
+});
+rightAdd.addEventListener('click',function(){
+    if (currIconRight >= maxIcon) return;
+    createIcon('https://google.com', 'icons2', `r${currIconRight}`, 'link');
+});
+
+// add all stashed bookmarks from local storage
+for (let i = 0; i < 6; i++) {
+    if (localStorage.getItem(`l${i}`) == "true") {
+        createIcon(localStorage.getItem(`l${i}_url`), 'icons', `l${i}`, localStorage.getItem(`l${i}_name`));
+    }
+    if (localStorage.getItem(`r${i}`) == "true") {
+        createIcon(localStorage.getItem(`r${i}_url`), 'icons2', `r${i}`, localStorage.getItem(`r${i}_name`));
+    }
+}
