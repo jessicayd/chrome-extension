@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawSnake(){
-        ctx.fillStyle="rgb(230, 174, 124)"; //245, 204, 127
+        ctx.fillStyle="rgb(235, 189, 103)"; 
         ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize)
 
         ctx.fillStyle="rgb(145, 184, 152)";
