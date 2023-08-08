@@ -19,10 +19,9 @@ let appleY = 15;
 document.addEventListener("DOMContentLoaded", function() {
     const canvas = document.getElementById('snake-game'); 
     canvas.setAttribute("tabindex", 0);
-    // canvas.focus();
-
     const ctx = canvas.getContext('2d');
-
+    ctx.textBaseline = 'middle'; 
+    ctx.textAlign = 'center'; 
     let gameOver = false;
 
     /// initializing and drawing snake game
@@ -30,12 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         
         if (gameOver) {
             // edits the game over screen
-            ctx.fillStyle = "rgb(147, 127, 120)";
-            ctx.font = "50px Inter";
-            ctx.fillText("Game Over! ", canvas.clientWidth / 6.5, canvas.clientHeight / 2.25);
-            ctx.fillStyle = "rgb(147, 127, 120)";
-            ctx.font = "30px Inter";
-            ctx.fillText("Press 'Enter' to restart ", canvas.clientWidth / 9, canvas.clientHeight / 1.75);
+            ctx.fillStyle = "rgb(239, 233, 226)";
+            ctx.roundRect(canvas.clientWidth/4.5, canvas.clientHeight/2.8, canvas.clientWidth/1.85, canvas.clientHeight/4.5, 15);
+            ctx.fill();
+            ctx.fillStyle = "rgb(166, 150, 135)";
+            ctx.font = "25px Inter";
+            ctx.fillText("game over! ", canvas.clientWidth / 2, canvas.clientHeight / 2.27);
+            ctx.fillStyle = "rgb(166, 150, 135)";
+            ctx.font = "15px Inter";
+            ctx.fillText("press 'enter' to restart ", canvas.clientWidth / 2, canvas.clientHeight / 1.95);
             return;
         }
 
@@ -174,9 +176,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // score
 
     function drawScore() {
-        ctx.fillStyle="rgb(147, 127, 120)"
+        ctx.fillStyle="rgb(166, 150, 135)"
         ctx.font="15px Inter"
-        ctx.fillText("Score: " + score, canvas.clientWidth-75,25);
+        ctx.fillText("Score: " + score, canvas.clientWidth-50,25);
     }
 
     // game over
