@@ -172,3 +172,15 @@ for (let i = 0; i < 6; i++) {
         createIcon(localStorage.getItem(`r${i}_url`), 'icons2', `r${i}`, localStorage.getItem(`r${i}_name`));
     }
 }
+
+
+// saves note section
+let note = document.getElementById('notes');
+if (localStorage.getItem(`notes`) == null || localStorage.getItem(`notes`) == 'null') {
+    localStorage.setItem(`notes`, ' ');
+}
+note.innerHTML = localStorage.getItem(`notes`);
+
+note.addEventListener('input', function(){
+    localStorage.setItem(`notes`,this.value);
+})

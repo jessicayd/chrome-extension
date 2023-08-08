@@ -70,7 +70,7 @@ form {
 
 
 /* snake game */
-.snake-container {
+#snake-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,8 +79,17 @@ form {
 }
 
 #snake-game {
-    margin: 35px auto;
+    margin: 0 auto;
+}
+
+#all-slides {
     border: 1px solid black;
+    margin:35px 0;
+    height:400px;
+    width:600px;
+    background-color: rgb(229,219,209);
+    display:flex;
+    align-items: center;
 }
 
 #start-button {
@@ -97,6 +106,20 @@ form {
     transform: translate(-50%, -50%);
 }
 
+/* notes */
+#notes{
+    resize: none;
+    font-family: 'Inter', sans-serif;
+    padding:10px;
+    height: 340px;
+    width: 530px;
+    overflow-y: auto;
+    border:none;
+    margin:auto;
+    background-color: #F4F1E7;
+    border-radius: 8px;
+    color: #856f61;
+}
 
 
 /* icons */
