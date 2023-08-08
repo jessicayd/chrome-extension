@@ -115,12 +115,13 @@ form {
 #notes{
     resize: none;
     font-family: 'Inter', sans-serif;
-    padding:10px;
+    padding:15px;
     height: 330px;
-    width: 530px;
+    width: 520px;
     overflow-y: auto;
     border:none;
-    margin: 2em;
+    margin:auto;
+    margin-top:20px;
     background-color: #F4F1E7;
     border-radius: 8px;
     color: #856f61;
