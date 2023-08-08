@@ -103,10 +103,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawSnake(){
-        ctx.fillStyle="orange";
+        ctx.fillStyle="rgb(230, 174, 124)"; //245, 204, 127
         ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize)
 
-        ctx.fillStyle="green";
+        ctx.fillStyle="rgb(145, 184, 152)";
         for(let i=0; i<snake.length; i++){
             let part=snake[i]
             ctx.fillRect(part.x*tileCount, part.y*tileCount, tileSize, tileSize)
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // food
 
     function drawApple(){
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "rgb(242, 145, 145)";
         ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize)
     }
 
