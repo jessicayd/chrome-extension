@@ -4,6 +4,7 @@ body {
     grid-template-columns: 11% 60% 11%;
     grid-column-gap: 9%;
     text-align:center;
+    margin: 0;
 }
 
 #middle {
@@ -12,7 +13,7 @@ body {
 }
 
 /* time */
-h1, h2 {
+h1, h2, h3 {
     font-family: 'Inter', sans-serif;
     color: #A99486;
     margin-top:0;
@@ -69,13 +70,21 @@ form {
 }
 
 
-/* snake game */
+/* snake game and notes */
 .slide.snake-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    border: 1px solid black;
+    height:400px;
+    width: 48em;
+    background-color: rgb(229,219,209);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 1em;
+}
+
+h3 {
+    font-size: 20px;
+    margin-left: -10px;
 }
 
 #snake-game {
@@ -84,7 +93,7 @@ form {
 
 #start-button {
     padding: 0.5em 1.5em;
-    background-color:  #F4F1E7;
+    background-color: rgb(239, 233, 226);
     color: #A99486;
     font-size: 1.5em;
     border: none;
@@ -101,29 +110,43 @@ form {
     background-color:  rgb(239, 233, 226);
 }
 
-/* notes */
-.slide.notepad {
-    border: 1px solid black;
-    height:400px;
-    width:600px;
-    background-color: rgb(229,219,209);
-    display:flex;
+.scores {
+    text-align: left;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+/* notes */
+.slide.notepad{
+    border: 1px solid black;
+    height:400px;
+    width: 48em;
+    background-color: rgb(229,219,209);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
 }
 
 #notes{
     resize: none;
     font-family: 'Inter', sans-serif;
-    padding:15px;
-    height: 330px;
-    width: 520px;
+    padding: 1em;
+    height: 370px;
+    width: 600px;
     overflow-y: auto;
     border:none;
-    margin:auto;
-    margin-top:20px;
     background-color: #F4F1E7;
-    border-radius: 8px;
     color: #856f61;
 }
 
@@ -199,7 +222,7 @@ button:active {
     align-items: center;
     justify-content: center;
     margin: auto;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 #prev, #next {
