@@ -70,7 +70,7 @@ form {
 
 
 /* snake game */
-#snake-container {
+.slide.snake-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,16 +80,6 @@ form {
 
 #snake-game {
     margin: 0 auto;
-}
-
-#all-slides {
-    border: 1px solid black;
-    margin:35px 0;
-    height:400px;
-    width:600px;
-    background-color: rgb(229,219,209);
-    display:flex;
-    align-items: center;
 }
 
 #start-button {
@@ -107,15 +97,25 @@ form {
 }
 
 /* notes */
+.slide.notepad {
+    border: 1px solid black;
+    height:400px;
+    width:600px;
+    background-color: rgb(229,219,209);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #notes{
     resize: none;
     font-family: 'Inter', sans-serif;
     padding:10px;
-    height: 340px;
+    height: 330px;
     width: 530px;
     overflow-y: auto;
     border:none;
-    margin:auto;
+    margin: 2em;
     background-color: #F4F1E7;
     border-radius: 8px;
     color: #856f61;
@@ -179,30 +179,63 @@ button:active {
     border-radius:10px;
     box-shadow: 0px 2px 5px rgba(108, 99, 90, 0.6);
 }
-.icon-image:hover, #left:hover, #right:hover {
+.icon-image:hover, #prev:hover, #next:hover {
     opacity:60%;
 }
 
-.icon-image:active, #left:active, #right:active {
-    opacity:50%;
+.icon-image:active, #prev:active, #next:active{
+    opacity:40%;
 }
 
-.slides {
+/* slides */
+.slideshow {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
+    margin-top: 40px;
 }
 
-#left, #right {
+#prev, #next {
     margin: 0 3em;
     border: none;
     outline: none;
     background-color: #F4F1E7;
     color: #A99486;
+    cursor: pointer;
+    transition: 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
+.slide {
+    display: none;
+}
 
+#prev {
+    left: 0;
+}
 
+#next {
+    right: 0;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    margin-top: 10px;
+    background-color: #A99486;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+  
 
 
 

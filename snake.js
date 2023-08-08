@@ -108,6 +108,10 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        if (yvelocity===0 && xvelocity===0){
+            return;
+        }
+
         if (event.keyCode == 38 || event.key === "w") {
             if (yvelocity == 1)
                 return;
