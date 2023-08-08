@@ -29,7 +29,7 @@ h2 {
 }
 
 #time {
-    margin-top: 80px;
+    margin-top: 60px;
     font-family: Menlo;
     margin-right: 20px;
 }
@@ -193,7 +193,7 @@ button:active {
     align-items: center;
     justify-content: center;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 45px;
 }
 
 #prev, #next {

@@ -15,6 +15,7 @@ document.getElementById("dot2").addEventListener("click", function() {
 });
 
 let slideIndex = 1;
+if (localStorage.getItem('slideIndex') != null) slideIndex = localStorage.getItem('slideIndex');
 
 function moveSlides(n) {
     showSlides(slideIndex += n);
@@ -25,15 +26,18 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
+    localStorage.setItem('slideIndex', slideIndex);
     let i;
     let slides = document.getElementsByClassName("slide");
     let dots = document.getElementsByClassName("dot");
     if (n > slides.length) {
         slideIndex = 1
+        localStorage.setItem('slideIndex', slideIndex);
     }
 
     if (n < 1) {
-        slideIndex = slides.length
+        slideIndex = slides.length;
+        localStorage.setItem('slideIndex', slideIndex);
     }
 
     for (i = 0; i < slides.length; i++) {
