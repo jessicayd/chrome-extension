@@ -87,14 +87,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const startButton = document.getElementById("start-button");
-    startButton.addEventListener("click", function() {
+    startButton.addEventListener("click", clickStartGame);
+    function clickStartGame() {
         startButton.style.display = "none"; 
         score = 0;
         reset(false);
         startGame();
         xvelocity = 1;
         canvas.focus();
-    });
+    }
 
     function clearScreen() {
         ctx.fillStyle = "#F4F1E7"
@@ -119,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     /// making snake move
-
     canvas.addEventListener('keydown', keyDown);
     function keyDown(event) {
         if (event.key.includes('Arrow')) {
@@ -133,6 +133,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 startGame();
             }
             return;
+        }
+
+        if (event.keyCode == "13") {
+            clickStartGame();
         }
 
         if (yvelocity===0 && xvelocity===0){
