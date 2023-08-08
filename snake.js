@@ -1,6 +1,7 @@
 // snake game
 
 let gameOver = false;
+const scoreElement = document.getElementById("current-score");
 let score = 0;
 let tailLength = 3;
 
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ctx.textBaseline = 'middle'; 
     ctx.textAlign = 'center'; 
     let gameOver = false;
+    
 
     /// initializing and drawing snake game
     function drawGame() {
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function clearScreen() {
-        ctx.fillStyle = "rgb(229,219,209)"
+        ctx.fillStyle = "#F4F1E7"
         ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight)
     }
 
@@ -176,9 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // score
 
     function drawScore() {
-        ctx.fillStyle="rgb(166, 150, 135)"
-        ctx.font="15px Inter"
-        ctx.fillText("Score: " + score, canvas.clientWidth-50,25);
+        document.getElementById("current-score").innerText = score;
     }
 
     // game over

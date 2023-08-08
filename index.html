@@ -40,9 +40,17 @@
                 <textarea id="notes">hi</textarea> 
             </div>
             <div class="slide snake-container">
-                <canvas id="snake-game" width="400" height="400"></canvas>
-                <button id="start-button">start</button>
-            </div>  
+                <div class="scores">
+                    <h3>high score:</h3>
+                    <h3 id="high-score">0</h3>
+                    <h3>current score:</h3>
+                    <h3 id="current-score">0</h3>
+                </div>
+                <div class="game-area">
+                    <canvas id="snake-game" width="400" height="400"></canvas>
+                    <button id="start-button">start</button>
+                </div>
+            </div>
             <div class="next-button">
                 <button id="next">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg">
