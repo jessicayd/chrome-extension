@@ -1,24 +1,48 @@
-// Listen for when the extension is installed or enabled.
-chrome.runtime.onInstalled.addListener(() => {
-    // Call the function to start authentication.
-    authenticate();
-  });
-  
-  // Function to initiate authentication.
-  function authenticate() {
-    // Call the chrome.identity.getAuthToken function here.
-    chrome.identity.getAuthToken({ interactive: true }, (token) => {
-      if (chrome.runtime.lastError) {
-        console.error(chrome.runtime.lastError);
-        return;
-      }
+window.onload = function() {
+  document.getElementById('gcal-signin').addEventListener('click', function() {
+    chrome.identity.getAuthToken({interactive: true}, function(token) {
       console.log("Authentication successful. Token:", token);
-  
-      // Fetch upcoming events using the token.
-      fetchUpcomingEvents(token);
+
+      var init = {
+        method: 'GET',
+        async: true,
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        'contentType': 'json'
+      };
+
+      const now = new Date();
+      const isoNow = now.toISOString();
+
+      const maxResults = 5; // Number of upcoming events to fetch.
+
+      const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${isoNow}&maxResults=${maxResults}`;
+      
+      fetch(eventsUrl, init)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.items) {
+            // Loop through the upcoming events and display them.
+            data.items.forEach((event) => {
+              console.log("Event:", event.summary, "Start:", event.start.dateTime);
+              // You can display the event details in your extension's UI.
+            });
+          } else {
+            console.log("No upcoming events found.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching events:", error);
+        });
+
     });
-  }
-  
+  });
+
+};
+
+
   // Function to fetch upcoming events using the provided token.
   function fetchUpcomingEvents(token) {
     const calendarId = "primary"; // You can change this to the desired calendar ID.
