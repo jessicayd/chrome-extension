@@ -6,7 +6,8 @@ wpm = document.getElementById('score'),
 acc = document.getElementById('accuracy'),
 count = document.getElementById('count'),
 errors = document.getElementById('errors'),
-scoreTag = document.getElementById('score-tag');
+scoreTag = document.getElementById('score-tag'),
+turtle = document.getElementById('turtle');
 
 let totalTime = 0,
 quoteChars = [],
@@ -34,9 +35,9 @@ const loadQuote = async () => {
   };
 
 // don't paste into the box D:
-input.addEventListener('paste', (event) => {
-    event.preventDefault(); 
-});
+// input.addEventListener('paste', (event) => {
+//     event.preventDefault(); 
+// });
 
 // handles when u type
 input.addEventListener('input', function() {
@@ -50,8 +51,8 @@ input.addEventListener('input', function() {
     let inputChars = input.value.split("");
 
     quoteChars.forEach((char, index) => {
-        console.log(char);
         if (char.innerText == inputChars[index]) {
+            hasFailed = false;
             char.classList.add("success");
             char.style.color = "rgb(70, 171, 87)";
         }
@@ -64,30 +65,21 @@ input.addEventListener('input', function() {
             }
             else if (char.classList.contains("fail")) {
                 char.classList.remove("fail");
-                hasFailed = false; 
-                input.style.color = "rgb(133, 114, 107)";
                 char.style.color = "rgb(117, 95, 87)";
             }
         }
-        
+
         else {
             if (!char.classList.contains("fail")) {
-                if (!hasFailed) {
-                    hasFailed = true;
-                    mistakes += 1;
-                    char.classList.add("fail");
-                    input.style.color = "rgb(247, 106, 106)";
-                    char.style.color= "rgb(247, 106, 106)";
-                }
+                hasFailed = true;
+                mistakes += 1;
+                char.classList.add("fail");
+                char.style.color= "rgb(247, 106, 106)";
             }
             errors.innerText = mistakes;
         }
         
-        let check = quoteChars.every((element) => {
-            return element.classList.contains("success");
-        });
-        
-        if (check) {
+        if (input.value.length == quoteLength) {
             input.disabled = true;
             displayResult();
         }
@@ -113,6 +105,8 @@ const updateTimer = () => {
         wpm.innerText = (charCount / 5 / totalTime).toFixed(0);
         acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(0);
         count.innerText = quoteLength - charCount;
+        let left = 47.75 / quoteLength * charCount;
+        turtle.style.left = `${left}em`;
     }
 
     const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${deciseconds}`;
@@ -129,12 +123,15 @@ const displayResult = () => {
     stopTimer();
     input.disabled = true;
     let charCount = input.value.length;
-    wpm.innerText = (charCount / 5 / totalTime).toFixed(2);
+    const speed = (charCount / 5 / totalTime).toFixed(2);
+    wpm.innerText = speed;
     acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(2);
     count.innerText = quoteLength - charCount;
+    let left = 47.75 / quoteLength * charCount;
+    turtle.style.left = `${left}em`;
 
     if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', wpm.innerText);
-    else localStorage.setItem('wpm', Math.max(wpm.innerText, localStorage.getItem('item')));
+    else localStorage.setItem('wpm', Math.max(speed, localStorage.getItem('wpm')));
 };
 
 // try again

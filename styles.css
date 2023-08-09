@@ -183,6 +183,7 @@ h3 {
     background-color: rgb(229,219,209);
     border: 1px solid rgb(117, 95, 87);
     padding: 1em;
+    position:relative;
     color: rgb(117, 95, 87);
 }
 
@@ -204,7 +205,7 @@ h3 {
     background-color: #f6f4ee;
     color: rgb(133, 114, 107);
     overflow-y: scroll;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 #type-try-again {
@@ -244,6 +245,16 @@ h3 {
     border: 1px solid rgb(117, 95, 87);
     background-color: #f6f4ee9a;
 }
+
+#turtle {
+    width:25px;
+    position: absolute;
+    left: 0;
+    bottom:0;
+    opacity:70%
+}
+
+
 
 /* calendar */
 .slide.calendar {
