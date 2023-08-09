@@ -196,7 +196,7 @@ h3 {
 #typing-type {
     text-align:left;
     resize:none;
-    height: 100px;
+    height:100%;
     font-size: 13px;
     font-family: Menlo, 'sans-serif';
     padding: 1em;
@@ -204,6 +204,7 @@ h3 {
     background-color: #f6f4ee;
     color: rgb(133, 114, 107);
     overflow-y: scroll;
+    margin-bottom: 5px;
 }
 
 #type-try-again {
@@ -232,7 +233,7 @@ h3 {
     text-align:center;
     font-size:14px;
     color: rgb(147, 127, 120);
-    margin: 5px 3px;
+    margin: 5px 0;
     margin-bottom:10px;
 }
 
