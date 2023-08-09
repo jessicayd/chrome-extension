@@ -54,6 +54,20 @@
                     <button id="start-button">start</button>
                 </div>
             </div>
+            <div class="slide type-test">
+                <div id="topbar">
+                    <span class="timerError">time: 
+                        <span class="timer" id="timer-self">00:00.0</span>s
+                    </span> 
+                    <span class="timerError" id="score">0 wpm</span>
+                    <span class="timerError">errors: 
+                        <span class="errors" id="errors-self">0</span>
+                    </span>
+                </div>
+                <button id="type-try-again">try again</button>
+                <div id="typing-quote"></div>
+                <textarea rows=3 id="typing-type" placeholder="type to start test"></textarea>
+            </div>
             <div class="next-button">
                 <button id="next">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg">
@@ -78,6 +92,7 @@
     <script src="script.js"></script>
     <script src="snake.js"></script>
     <script src="slides.js"></script>
+    <script src="type.js"></script>
 </body>
 </html>
 

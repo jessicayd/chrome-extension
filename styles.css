@@ -163,12 +163,76 @@ h3 {
     font-family: 'Inter', sans-serif;
     padding: 1em;
     height: 370px;
-    width: 600px;
+    width: 41em;
     overflow-y: auto;
     border:none;
     background-color: #F4F1E7;
     color: #856f61;
 }
+
+
+/* type test */
+.slide.type-test {
+    margin:auto;
+    text-align:center;
+    flex-direction: column;
+    border:solid;
+    padding:10px;
+    height:400px;
+    width: 48em;
+    background-color: rgb(229,219,209);
+    border: 1px solid black;
+    padding: 1em;
+    color: rgb(117, 95, 87);
+}
+
+#typing-quote {
+    text-align:left;
+    font-family: Menlo, 'sans-serif';
+    font-size: 13px;
+    padding: 1em;
+}
+
+#typing-type {
+    text-align:left;
+    resize:none;
+    height: 100px;
+    font-size: 13px;
+    font-family: Menlo, 'sans-serif';
+    padding: 1em;
+    background-color: #f6f4ee;
+    color: rgb(133, 114, 107);
+}
+
+#type-try-again {
+    margin:5px auto;
+    color: rgb(147, 127, 120);
+    background-color: #F4F1E7;
+    border: none;
+    padding: 8px 15px; 
+    border-radius: 8px; 
+    font-size: 15px; 
+    cursor:pointer;
+}
+
+#type-try-again:hover {
+    background-color: #f4f1e7c6;
+}
+
+#type-try-again:active {
+    background-color: #f4f1e786;
+}
+
+#topbar {
+    margin:10px;
+    font-size:15px;
+    color: rgb(147, 127, 120);
+}
+
+.timerError {
+    margin:20px;
+}
+
 
 
 /* icons */
@@ -195,11 +259,11 @@ h3 {
     font-size: 15px; 
 }
 
-button:hover {
+.remove-button:hover, .edit-button:hover, .add:hover {
     background-color: rgb(227, 216, 204);
 }
 
-button:active {
+.remove-button:active, .edit-button:active, .add:active {
     background-color: rgb(218, 206, 194);
 }
 
