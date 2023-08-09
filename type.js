@@ -7,7 +7,9 @@ acc = document.getElementById('accuracy'),
 count = document.getElementById('count'),
 errors = document.getElementById('errors'),
 scoreTag = document.getElementById('score-tag'),
-turtle = document.getElementById('turtle');
+turtle = document.getElementById('turtle'),
+box = document.querySelector('.slide.type-test');
+
 
 let totalTime = 0,
 quoteChars = [],
@@ -93,6 +95,7 @@ const startTimer = () => {
 };
 
 const updateTimer = () => {
+    let width = box.offsetWidth - 27;
     const currentTime = Date.now();
     const elapsedTime = currentTime - startTime;
 
@@ -105,8 +108,11 @@ const updateTimer = () => {
         wpm.innerText = (charCount / 5 / totalTime).toFixed(0);
         acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(0);
         count.innerText = quoteLength - charCount;
-        let left = Math.min(47.75, 47.75 / quoteLength * charCount);
-        turtle.style.left = `${left}em`;
+        let left = Math.min(width, width / quoteLength * charCount);
+        turtle.style.left = `${left}px`;
+
+        console.log(width);
+        console.log(left);
     }
 
     const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${deciseconds}`;
@@ -120,6 +126,7 @@ const stopTimer = () => {
 
 // end
 const displayResult = () => {
+    let width = box.offsetWidth - 27;
     stopTimer();
     input.disabled = true;
     let charCount = input.value.length;
@@ -127,8 +134,8 @@ const displayResult = () => {
     wpm.innerText = speed;
     acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(2);
     count.innerText = quoteLength - charCount;
-    let left = Math.min(47.75, 47.75 / quoteLength * charCount);
-    turtle.style.left = `${left}em`;
+    let left = Math.min(width, width / quoteLength * charCount);
+    turtle.style.left = `${left}px`;
 
     if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', wpm.innerText);
     else localStorage.setItem('wpm', Math.max(speed, localStorage.getItem('wpm')));
@@ -151,6 +158,7 @@ tryAgain.addEventListener('click', function () {
     errors.innerText = mistakes;
     acc.innerText = "0";
     time.innerText = "00:00.0";
+    turtle.style.left = `0px`;
 
     loadQuote();
 })
