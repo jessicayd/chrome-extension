@@ -35,9 +35,9 @@ const loadQuote = async () => {
   };
 
 // don't paste into the box D:
-// input.addEventListener('paste', (event) => {
-//     event.preventDefault(); 
-// });
+input.addEventListener('paste', (event) => {
+    event.preventDefault(); 
+});
 
 // handles when u type
 input.addEventListener('input', function() {
