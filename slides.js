@@ -14,6 +14,10 @@ document.getElementById("dot2").addEventListener("click", function() {
     currentSlides(2);
 });
 
+document.getElementById("dot3").addEventListener("click", function() {
+    currentSlides(3);
+});
+
 let slideIndex = 1;
 if (localStorage.getItem('slideIndex') != null) slideIndex = localStorage.getItem('slideIndex');
 
