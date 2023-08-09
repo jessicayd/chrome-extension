@@ -14,11 +14,25 @@ document.getElementById("dot2").addEventListener("click", function() {
     currentSlides(2);
 });
 
+document.getElementById("dot3").addEventListener("click", function() {
+    currentSlides(3);
+});
+
 let slideIndex = 1;
 if (localStorage.getItem('slideIndex') != null) slideIndex = localStorage.getItem('slideIndex');
 
+let first = true
+let slides = document.getElementsByClassName("slide");
+
 function moveSlides(n) {
-    showSlides(slideIndex += n);
+
+    // prevents bug of prev on first move
+    if (first && n == -1) {
+        first = false
+        currentSlides((slideIndex%slides.length) + 1);
+        return;
+    }
+    showSlides(slideIndex += n)
 }
 
 function currentSlides(n) {
@@ -28,15 +42,14 @@ function currentSlides(n) {
 function showSlides(n) {
     localStorage.setItem('slideIndex', slideIndex);
     let i;
-    let slides = document.getElementsByClassName("slide");
     let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {
-        slideIndex = 1
+    if (n < 1) {
+        slideIndex = slides.length;
         localStorage.setItem('slideIndex', slideIndex);
     }
 
-    if (n < 1) {
-        slideIndex = slides.length;
+    if (n > slides.length) {
+        slideIndex = 1;
         localStorage.setItem('slideIndex', slideIndex);
     }
 
@@ -51,8 +64,6 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "flex";
     dots[slideIndex-1].classList.add("active");
 }
-
-
 
 showSlides(slideIndex);
 

@@ -1,5 +1,6 @@
 // snake game
 
+// initalizing
 let gameOver = false;
 let score = 0;
 let tailLength = 3;
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let lastFrameTime = 0;
 
-    /// initializing and drawing snake game
+    // initializing and drawing snake game
     function drawGame(timestamp) {
 
         const deltaTime = timestamp - lastFrameTime;
@@ -80,12 +81,14 @@ document.addEventListener("DOMContentLoaded", function() {
         requestAnimationFrame(drawGame);
     }
 
+    // starts the game
     function startGame() {
         score = 0
         lastFrameTime = performance.now();
         requestAnimationFrame(drawGame);
     }
 
+    // calls startGame when clicking the start button
     const startButton = document.getElementById("start-button");
     startButton.addEventListener("click", clickStartGame);
     function clickStartGame() {
@@ -97,11 +100,13 @@ document.addEventListener("DOMContentLoaded", function() {
         canvas.focus();
     }
 
+    // clears the screen
     function clearScreen() {
         ctx.fillStyle = "#F4F1E7"
         ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight)
     }
 
+    // draws the snake
     function drawSnake(){
         ctx.fillStyle="rgb(235, 189, 103)"; 
         ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize)
@@ -113,19 +118,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         snake.push(new snakePart(headX,headY));
 
+        // pops last element when snake moves
         while (snake.length > tailLength) {
             snake.shift();
         }
         moved = true;
     }
 
-    /// making snake move
+    // makes snake move when using arrow keys or wasd
     canvas.addEventListener('keydown', keyDown);
     function keyDown(event) {
+        // prevents scrolling when canvas in focus
         if (event.key.includes('Arrow')) {
             event.preventDefault();
         }
 
+        // enter resets game and starts game
         if (gameOver) {
             if (event.keyCode === 13) {
                 reset(true);
@@ -139,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
             clickStartGame();
         }
 
+        // if game hasn't started, arrows don't work
         if (yvelocity===0 && xvelocity===0){
             return;
         }
@@ -168,18 +177,17 @@ document.addEventListener("DOMContentLoaded", function() {
             if (xvelocity == -1)
                 return;
             yvelocity = 0;
-            xvelocity = 1;//move one tile right
+            xvelocity = 1; // right
         }
     }
 
-    function changeSnakePosition() {
-        
+    // change the position of snake
+    function changeSnakePosition() {    
         headX +=  xvelocity;
         headY +=  yvelocity;
     }
 
-    // food
-
+    // draws the apple
     function drawApple(){
         ctx.fillStyle = "rgb(242, 145, 145)";
         ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize)
@@ -193,8 +201,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }  
     }
 
+    // checks if snake gets the apple
     function checkApple() {
         if(appleX === headX && appleY === headY){
+            // creates new apple
             appleX = Math.floor(Math.random()*tileCount);
             appleY = Math.floor(Math.random()*tileCount);
             tailLength++;
@@ -202,23 +212,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // score
-
+    // updates current score
     function drawScore() {
         document.getElementById("current-score").innerText = score;
     }
 
-    // game over
+    // checks if game is over
     function isGameOver() {
+        // hasn't started
         if (yvelocity===0 && xvelocity===0){
             return false;
         }
-
+        // out of bounds
         if (headX < 0 || headX >= tileCount || headY < 0 || headY >= tileCount) {
             return true;
         }
-    
-   
+        // collides with itself
         for (let i = 0; i < snake.length; i++) {
             let part = snake[i];
             if (part.x === headX && part.y === headY) {
@@ -229,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return gameOver;
     }
 
+    // resets the game 
     function reset(gameOver) {
         if (gameOver) {
             snake.length = 0; 
