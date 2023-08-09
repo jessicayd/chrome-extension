@@ -1,0 +1,53 @@
+// Listen for when the extension is installed or enabled.
+chrome.runtime.onInstalled.addListener(() => {
+    // Call the function to start authentication.
+    authenticate();
+  });
+  
+  // Function to initiate authentication.
+  function authenticate() {
+    // Call the chrome.identity.getAuthToken function here.
+    chrome.identity.getAuthToken({ interactive: true }, (token) => {
+      if (chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError);
+        return;
+      }
+      console.log("Authentication successful. Token:", token);
+  
+      // Fetch upcoming events using the token.
+      fetchUpcomingEvents(token);
+    });
+  }
+  
+  // Function to fetch upcoming events using the provided token.
+  function fetchUpcomingEvents(token) {
+    const calendarId = "primary"; // You can change this to the desired calendar ID.
+    const maxResults = 3; // Number of upcoming events to fetch.
+  
+    // API endpoint URL to fetch events.
+    // const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?maxResults=${maxResults}&orderBy=startTime`;
+    const eventsUrl = "https://www.googleapis.com/calendar/v3/calendars/primary"
+    
+    // Fetch events using the token.
+    fetch(eventsUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.items) {
+          // Loop through the upcoming events and display them.
+          data.items.forEach((event) => {
+            console.log("Event:", event.summary, "Start:", event.start.dateTime);
+            // You can display the event details in your extension's UI.
+          });
+        } else {
+          console.log("No upcoming events found.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
+  }
+  
