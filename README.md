@@ -10,9 +10,9 @@ chrome extension intended to work as the default new tab / homepage site for goo
 - slideshow with multiple widgets
   - 'notes' sheet to stash quick ideas
   - snake game to play when bored
+  - typing speed test to check your wpm
 
 ## displays
 <img width="1440" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/3c327f22-6aaf-4b7b-b0f3-d17d749bc0bf">
 <img width="1440" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/b8ad3c11-366f-465b-8265-02fd18163020">
-
-
+<img width="1437" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/bee7ff12-e1ab-4933-8e5d-10ddda0ad178">
