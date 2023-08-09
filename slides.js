@@ -47,6 +47,7 @@ function currentSlides(n) {
 }
 
 function showSlides(n) {
+    console.log(slideIndex);
     localStorage.setItem('slideIndex', slideIndex);
     let i;
     let dots = document.getElementsByClassName("dot");
