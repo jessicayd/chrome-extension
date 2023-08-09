@@ -5,7 +5,8 @@ time = document.getElementById('timer'),
 wpm = document.getElementById('score'),
 acc = document.getElementById('accuracy'),
 count = document.getElementById('count'),
-errors = document.getElementById('errors');
+errors = document.getElementById('errors'),
+scoreTag = document.getElementById('score-tag');
 
 let totalTime = 0,
 quoteChars = [],
@@ -20,13 +21,6 @@ const loadQuote = async () => {
     let data = await response.json();
     quote = data[Math.floor(Math.random() * data.length)].text; // random quote kinda
 
-    // initial
-    text.innerHTML = "";
-    input.value = "";
-    isTimerStarted = false;
-    mistakes = 0;
-    errors.innerText = mistakes;
-
     // creating array of spans
     quote.split("").forEach(char => {
         let span = `<span>${char}</span>`
@@ -40,9 +34,9 @@ const loadQuote = async () => {
   };
 
 // don't paste into the box D:
-// input.addEventListener('paste', (event) => {
-//     event.preventDefault(); 
-// });
+input.addEventListener('paste', (event) => {
+    event.preventDefault(); 
+});
 
 // handles when u type
 input.addEventListener('input', function() {
@@ -50,6 +44,7 @@ input.addEventListener('input', function() {
     if (!isTimerStarted) {
         startTimer();
         isTimerStarted = true;
+        scoreTag.innerHTML = "score: ";
     }
 
     let inputChars = input.value.split("");
@@ -135,6 +130,9 @@ const displayResult = () => {
     wpm.innerText = (charCount / 5 / totalTime).toFixed(2);
     acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(2);
     count.innerText = quoteLength - charCount;
+
+    if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', wpm.innerText);
+    else localStorage.setItem('wpm', Math.max(wpm.innerText, localStorage.getItem('item')));
 };
 
 // try again
@@ -142,11 +140,27 @@ tryAgain.addEventListener('click', function () {
     stopTimer();
     input.disabled = false;
     totalTime = 0;
+
+    if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', 0);
+    wpm.innerHTML = localStorage.getItem('wpm');
+    scoreTag.innerHTML = "highest: ";
+
+    text.innerHTML = "";
+    input.value = "";
+    isTimerStarted = false;
+    mistakes = 0;
+    errors.innerText = mistakes;
+    acc.innerText = "0";
+    time.innerText = "00:00.0";
+
     loadQuote();
 })
 
 // onload starting place
 document.addEventListener('DOMContentLoaded', function() {
     input.disabled = false;
+    if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', 0);
+    wpm.innerHTML = localStorage.getItem('wpm');
+    scoreTag.innerHTML = "highest: ";
     loadQuote();
 })
