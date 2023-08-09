@@ -66,6 +66,7 @@ input.addEventListener('input', function() {
                 char.classList.remove("fail");
                 hasFailed = false; 
                 input.style.color = "rgb(133, 114, 107)";
+                char.style.color = "rgb(117, 95, 87)";
             }
         }
         
@@ -76,6 +77,7 @@ input.addEventListener('input', function() {
                     mistakes += 1;
                     char.classList.add("fail");
                     input.style.color = "rgb(247, 106, 106)";
+                    char.style.color= "rgb(247, 106, 106)";
                 }
             }
             errors.innerText = mistakes;
