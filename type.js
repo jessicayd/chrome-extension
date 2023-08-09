@@ -35,9 +35,9 @@ const loadQuote = async () => {
   };
 
 // don't paste into the box D:
-input.addEventListener('paste', (event) => {
-    event.preventDefault(); 
-});
+// input.addEventListener('paste', (event) => {
+//     event.preventDefault(); 
+// });
 
 // handles when u type
 input.addEventListener('input', function() {
@@ -79,7 +79,7 @@ input.addEventListener('input', function() {
             errors.innerText = mistakes;
         }
         
-        if (input.value.length == quoteLength) {
+        if (input.value.length >= quoteLength) {
             input.disabled = true;
             displayResult();
         }
@@ -105,7 +105,7 @@ const updateTimer = () => {
         wpm.innerText = (charCount / 5 / totalTime).toFixed(0);
         acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(0);
         count.innerText = quoteLength - charCount;
-        let left = 47.75 / quoteLength * charCount;
+        let left = Math.min(47.75, 47.75 / quoteLength * charCount);
         turtle.style.left = `${left}em`;
     }
 
@@ -127,7 +127,7 @@ const displayResult = () => {
     wpm.innerText = speed;
     acc.innerText = ((charCount - mistakes) / charCount * 100).toFixed(2);
     count.innerText = quoteLength - charCount;
-    let left = 47.75 / quoteLength * charCount;
+    let left = Math.min(47.75, 47.75 / quoteLength * charCount);
     turtle.style.left = `${left}em`;
 
     if (localStorage.getItem('wpm') == null) localStorage.setItem('wpm', wpm.innerText);
