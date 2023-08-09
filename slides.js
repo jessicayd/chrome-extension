@@ -18,6 +18,10 @@ document.getElementById("dot3").addEventListener("click", function() {
     currentSlides(3);
 });
 
+document.getElementById("dot4").addEventListener("click", function() {
+    currentSlides(4);
+});
+
 let slideIndex = 1;
 if (localStorage.getItem('slideIndex') != null) slideIndex = localStorage.getItem('slideIndex');
 
@@ -40,6 +44,7 @@ function currentSlides(n) {
 }
 
 function showSlides(n) {
+    console.log(slideIndex);
     localStorage.setItem('slideIndex', slideIndex);
     let i;
     let dots = document.getElementsByClassName("dot");
