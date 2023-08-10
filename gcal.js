@@ -5,11 +5,16 @@ let isSignedIn = false;
 if (localStorage.getItem('gcal-signed-in') == "true") isSignedIn = true;
 
 function getEvents () {
-  isSignedIn = true;
-  localStorage.setItem('gcal-signed-in',"true");
   chrome.identity.getAuthToken({interactive: true}, function(token) {
-    console.log("Authentication successful. Token:", token);
 
+    if (chrome.runtime.lastError) {
+      return;
+    }
+  
+    console.log("Authentication successful. Token:", token);
+    isSignedIn = true;
+    localStorage.setItem('gcal-signed-in',"true");
+  
     var init = {
       method: 'GET',
       async: true,
@@ -62,6 +67,9 @@ function getEvents () {
         sortedDates = Array.from(sortedMap.values()).slice(0, index);
         console.log(sortedTimes);
         console.log(sortedDates);
+
+        document.getElementById('gcal-signout').style.display = "inline";
+        document.getElementById('gcal-signin').innerHTML = "refresh";
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
@@ -69,17 +77,23 @@ function getEvents () {
     });
   });
 
-  document.getElementById('gcal-signout').style.display = "inline";
-  document.getElementById('gcal-signin').innerHTML = "refresh";
 }
 // adding sign in logic to grab recent events
 document.getElementById('gcal-signin').addEventListener('click', getEvents);
 
 document.getElementById('gcal-signout').addEventListener('click', function() {
   chrome.identity.getAuthToken({ interactive: false }, 
-    function () {
+    function (token) {
       if (!chrome.runtime.lastError) {        
         chrome.identity.clearAllCachedAuthTokens();
+
+        chrome.identity.removeCachedAuthToken({token: token}, function(){});
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+        "GET", 
+        "https://accounts.google.com/o/oauth2/revoke?token=" + token);
+        xhr.send();
 
         console.log('revoked token');
         localStorage.setItem('gcal-signed-in',"false");
