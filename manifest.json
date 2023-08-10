@@ -15,9 +15,6 @@
       "https://www.googleapis.com/",
       "https://apidata.googleusercontent.com/caldav/v2/calid/user"
     ],
-    "background": {
-      "service_worker": "background.js"
-    },
     "oauth2": {
       "client_id": "665893699441-0gfhmj6blit4v1d69s7t9gagoi0kvuap.apps.googleusercontent.com",
       "scopes": ["https://www.googleapis.com/auth/calendar.readonly"]
