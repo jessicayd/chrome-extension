@@ -52,10 +52,11 @@ function getEvents () {
               const dateTimeParts = event.start.dateTime.split('T');
               const date = dateTimeParts[0];
               const time = dateTimeParts[1].substring(0, 5);
-              // const location = event.location; 
+              const location = event.location; 
+              console.log(location)
               
               // trim gets rid of leading and trailing white space/commas
-              events.set([date, time], event.summary.trim());
+              events.set([date, time], [event.summary.trim(),location]);
             });
           } else {
             console.log("No upcoming events found.");
@@ -88,7 +89,8 @@ function getEvents () {
           document.querySelector('#day-type' + i).innerHTML = formattedDate[0];
           document.querySelector('#day' + i).innerHTML = formattedDate[1]+ " " + formattedDate[2];
           document.querySelector('#time' + i).innerHTML = formattedTime[0] + " " + formattedTime[1];
-          document.querySelector('#event-title' + i).innerHTML = sortedEvents[i];
+          document.querySelector('#event-title' + i).innerHTML = sortedEvents[i][0];
+          document.querySelector('#location' + i).innerHTML = sortedEvents[i][1] ? sortedEvents[i][1] : '';
         }
       })
       .catch((error) => {

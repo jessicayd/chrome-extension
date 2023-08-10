@@ -312,7 +312,7 @@ h3 {
 }
 
 #event-date {
-    flex: 1.20;
+    flex: 1.0;
     color: #A99486;
     text-align: left;
     padding-left: 1.5em;
@@ -337,7 +337,6 @@ h3 {
 }
 
 .vl {
-    flex: 0.25;
     border-left: 2px solid #A99486;
     height: 70%;
     margin: 10px;
@@ -349,7 +348,7 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding: 0.5em 0;
+    padding: 0.5em;
 }
 
 #event-description h2{
@@ -376,6 +375,11 @@ h3 {
 
 .location {
     padding-left: 10px;
+    max-width: 23em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
 }
 
 #event-details h3 {
