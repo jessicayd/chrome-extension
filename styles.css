@@ -248,7 +248,7 @@ h3 {
 
 #turtle {
     width:25px;
-    position: relative;
+    position: absolute;
     left: 0;
     bottom:0;
     opacity:70%
