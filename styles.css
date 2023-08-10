@@ -273,7 +273,7 @@ h3 {
 
 .gcal-buttons {
     padding:5px;
-    margin: 5px 2px;
+    margin: 8px 2px;
     border-radius:5px;
     border: 1px solid rgb(117, 95, 87);
     color: rgb(147, 127, 120);
@@ -298,17 +298,13 @@ h3 {
 .event {
     background-color: #F4F1E7;
     padding: 0.5em;
-    margin: 1em;
+    margin: 0.75em 1em;
     width: 45em;
     border-radius: 15px;
     flex-direction: row;
     display: none;
     align-items: center;
     border: none;
-}
-
-#event1 {
-    margin-top: 1em;
 }
 
 #event-date {
