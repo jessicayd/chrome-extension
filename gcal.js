@@ -1,33 +1,47 @@
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById('gcal-signin').addEventListener('click', function() {
-    chrome.identity.getAuthToken({interactive: true}, function(token) {
-      console.log("Authentication successful. Token:", token);
+let calendarIds = [];
+let sortedMap = new Map();
 
-      var init = {
-        method: 'GET',
-        async: true,
-        headers: {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        },
-        'contentType': 'json'
-      };
+let isSignedIn = false;
+if (localStorage.getItem('gcal-signed-in') == "true") isSignedIn = true;
 
-      const now = new Date();
-      const isoNow = now.toISOString();
+function getEvents () {
+  isSignedIn = true;
+  localStorage.setItem('gcal-signed-in',"true");
+  chrome.identity.getAuthToken({interactive: true}, function(token) {
+    console.log("Authentication successful. Token:", token);
 
-      const maxResults = 5;
+    var init = {
+      method: 'GET',
+      async: true,
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      'contentType': 'json'
+    };
 
-      const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${isoNow}&maxResults=${maxResults}`;
-      
-      fetch(eventsUrl, init)
+    const now = new Date();
+    const isoNow = now.toISOString();
+    const maxResults = 4;
+
+  
+    // getting all calendars
+    fetch(`https://www.googleapis.com/calendar/v3/users/me/calendarList`, init)
+    .then(response => response.json())
+    .then(calendarListData => {
+      // getting ids
+      calendarIds = calendarListData.items.map(calendar => calendar.id);
+
+      const fetchPromises = [];
+      let events = new Map();
+      // getting most top recent events of each calendar
+      for (const calendarId of calendarIds) {
+        const fetchPromise = fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?maxResults=${maxResults}&timeMin=${isoNow}`, init)
         .then((response) => response.json())
         .then((data) => {
           if (data.items) {
-            // Loop through the upcoming events and display them.
             data.items.forEach((event) => {
-              console.log("Event:", event.summary, "Start:", event.start.dateTime);
-              // You can display the event details in your extension's UI.
+              events.set(event.start.dateTime, event.summary);
             });
           } else {
             console.log("No upcoming events found.");
@@ -36,41 +50,50 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch((error) => {
           console.error("Error fetching events:", error);
         });
+        fetchPromises.push(fetchPromise);
+      }
 
+      Promise.all(fetchPromises)
+      .then(() => {
+        const index = Math.min(events.size, maxResults);
+        const sortedMap = new Map([...events.entries()].sort());
+
+        sortedTimes = Array.from(sortedMap.keys()).slice(0, index);
+        sortedDates = Array.from(sortedMap.values()).slice(0, index);
+        console.log(sortedTimes);
+        console.log(sortedDates);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
     });
   });
 
-});
-
-
-// Function to fetch upcoming events using the provided token.
-function fetchUpcomingEvents(token) {
-  const calendarId = "primary"; // You can change this to the desired calendar ID.
-  const maxResults = 3; // Number of upcoming events to fetch.
-
-  // API endpoint URL to fetch events.
-  // const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?maxResults=${maxResults}&orderBy=startTime`;
-  const eventsUrl = "https://www.googleapis.com/calendar/v3/calendars/primary"
-  
-  // Fetch events using the token.
-  fetch(eventsUrl, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.items) {
-        // Loop through the upcoming events and display them.
-        data.items.forEach((event) => {
-          console.log("Event:", event.summary, "Start:", event.start.dateTime);
-          // You can display the event details in your extension's UI.
-        });
-      } else {
-        console.log("No upcoming events found.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching events:", error);
-    });
+  document.getElementById('gcal-signout').style.display = "inline";
+  document.getElementById('gcal-signin').innerHTML = "refresh";
 }
+// adding sign in logic to grab recent events
+document.getElementById('gcal-signin').addEventListener('click', getEvents);
+
+document.getElementById('gcal-signout').addEventListener('click', function() {
+  chrome.identity.getAuthToken({ interactive: false }, 
+    function () {
+      if (!chrome.runtime.lastError) {        
+        chrome.identity.clearAllCachedAuthTokens();
+
+        console.log('revoked token');
+        localStorage.setItem('gcal-signed-in',"false");
+        isSignedIn = false;
+        document.getElementById('gcal-signout').style.display = "none";
+        document.getElementById('gcal-signin').innerHTML = "sign in to google calendar";
+      }
+    }
+  );
+})
+
+// on load
+document.addEventListener("DOMContentLoaded", function() {
+  if (isSignedIn) {
+    getEvents();
+  }
+});
