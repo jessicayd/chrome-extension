@@ -314,6 +314,7 @@ h3 {
     flex: 0.25;
     border-left: 2px solid #A99486;
     height: 70%;
+    margin: 10px;
   }
 
 #event-description {
