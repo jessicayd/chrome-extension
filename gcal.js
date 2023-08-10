@@ -20,8 +20,7 @@ function getEvents () {
       async: true,
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
+        'Content-Type': 'application/json'
       },
       'contentType': 'json'
     };
@@ -157,14 +156,9 @@ function formatTime (inputTime) {
   return [hour + ":" + minutes, ampm]
 }
 
-function updateEventsPeriodically(interval) {
-  setInterval(getEvents, interval);
-}
-
 // on load
 document.addEventListener("DOMContentLoaded", function() {
   if (isSignedIn) {
     getEvents();
-    updateEventsPeriodically(60000);
   }
 });
