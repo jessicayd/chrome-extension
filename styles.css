@@ -274,6 +274,7 @@ h3 {
 .gcal-buttons {
     padding:5px;
     margin: 8px 2px;
+    margin-top: 5px;
     border-radius:5px;
     border: 1px solid rgb(117, 95, 87);
     color: rgb(147, 127, 120);
