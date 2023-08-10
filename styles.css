@@ -202,11 +202,11 @@ h3 {
     width: 40em;
     font-size: 13px;
     font-family: Menlo, 'sans-serif';
-    padding: 2em;
+    padding: 1em;
     background-color: #f6f4ee;
     color: rgb(133, 114, 107);
     overflow-y: scroll;
-    margin-bottom: 10px;
+    margin: 1em;
 }
 
 #type-try-again {
