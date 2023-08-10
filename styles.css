@@ -248,7 +248,7 @@ h3 {
 
 #turtle {
     width:25px;
-    position: absolute;
+    position: relative;
     left: 0;
     bottom:0;
     opacity:70%
@@ -270,6 +270,92 @@ h3 {
     color: rgb(117, 95, 87);
 }
 
+.event {
+    background-color: #F4F1E7;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 15px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#event1 {
+    margin-top: 2em
+}
+
+#event-date {
+    flex: 1.20;
+    color: #A99486;
+    text-align: left;
+    padding-left: 1.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+#event-date h3 {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.5em;
+    padding-top: 0.5em;
+}
+
+#event-date h2 {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 2em;
+    font-weight: 500;
+    margin-top: -3px;
+
+}
+
+.vl {
+    flex: 0.25;
+    border-left: 2px solid #A99486;
+    height: 70%;
+  }
+
+#event-description {
+    flex: 5;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 0.5em 0;
+}
+
+#event-description h2{
+    font-size: 1.75em;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    font-weight: 500;
+}
+
+#event-details {
+    align-items: center;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    color: #A99486;
+    display: flex;
+}
+
+#calendar-icon {
+    width: 1em;
+    height: 1em;
+    background-color: #DB5F5F;
+    margin-right: 10px;
+}
+
+#location {
+    padding-left: 20px;
+}
+
+#event-details h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-family: 'Inter', sans-serif;
+}
 
 /* icons */
 .icon-wrapper {
