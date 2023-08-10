@@ -297,8 +297,8 @@ h3 {
 
 .event {
     background-color: #F4F1E7;
-    padding: 0.5em;
-    margin: 0.75em 1em;
+    padding: 1em;
+    margin: 0.5em auto;
     width: 45em;
     border-radius: 15px;
     flex-direction: row;
@@ -311,7 +311,7 @@ h3 {
     flex: 1.0;
     color: #A99486;
     text-align: left;
-    padding-left: 1.5em;
+    padding-left: 1em;
     display: flex;
     flex-direction: column;
 }
@@ -335,7 +335,7 @@ h3 {
 .vl {
     border-left: 2px solid #A99486;
     height: 70%;
-    margin: 10px;
+    margin: 15px;
   }
 
 #event-description {
