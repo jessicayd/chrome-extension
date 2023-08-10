@@ -111,7 +111,8 @@ h3 {
 
 .scores {
     text-align: left;
-    flex: 1;
+    flex: 2;
+    margin: 1em;
     padding: 10px;
     padding-top: 20px;
     box-sizing: border-box;
@@ -141,7 +142,7 @@ h3 {
 
 #snake-icon {
     width: 135px;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 
@@ -198,10 +199,10 @@ h3 {
     text-align:left;
     resize:none;
     height:100%;
+    width: 40em;
     font-size: 13px;
     font-family: Menlo, 'sans-serif';
-    padding: 1em;
-    padding-right:0.8em;
+    padding: 2em;
     background-color: #f6f4ee;
     color: rgb(133, 114, 107);
     overflow-y: scroll;
@@ -298,6 +299,7 @@ h3 {
     background-color: #F4F1E7;
     padding: 0.5em;
     margin: 1em;
+    width: 45em;
     border-radius: 15px;
     flex-direction: row;
     display: flex;
