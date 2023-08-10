@@ -122,6 +122,11 @@ document.getElementById('gcal-signout').addEventListener('click', function() {
         isSignedIn = false;
         document.getElementById('gcal-signout').style.display = "none";
         document.getElementById('gcal-signin').innerHTML = "sign in to google calendar";
+
+        for (let i = 0; i < 4; i++) {
+          document.querySelector('#event' + i).style.display = "none";
+        }
+
       }
     }
   );
