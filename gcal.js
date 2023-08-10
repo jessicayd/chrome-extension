@@ -34,6 +34,7 @@ function getEvents () {
     fetch(`https://www.googleapis.com/calendar/v3/users/me/calendarList`, init)
     .then(response => response.json())
     .then(calendarListData => {
+      console.log("Calendar List Data:", calendarListData);
       // getting ids
       calendarIds = calendarListData.items.map(calendar => calendar.id);
 
@@ -45,8 +46,16 @@ function getEvents () {
         .then((response) => response.json())
         .then((data) => {
           if (data.items) {
+            console.log(data.items)
             data.items.forEach((event) => {
-              events.set(event.start.dateTime, event.summary);
+              // end dates?
+              const dateTimeParts = event.start.dateTime.split('T');
+              const date = dateTimeParts[0];
+              const time = dateTimeParts[1].substring(0, 5);
+              // const location = event.location; 
+              
+              // trim gets rid of leading and trailing white space/commas
+              events.set([date, time], event.summary.trim());
             });
           } else {
             console.log("No upcoming events found.");
@@ -64,12 +73,23 @@ function getEvents () {
         const sortedMap = new Map([...events.entries()].sort());
 
         sortedTimes = Array.from(sortedMap.keys()).slice(0, index);
-        sortedDates = Array.from(sortedMap.values()).slice(0, index);
+        sortedEvents = Array.from(sortedMap.values()).slice(0, index);
         console.log(sortedTimes);
-        console.log(sortedDates);
+        console.log(sortedEvents);
 
         document.getElementById('gcal-signout').style.display = "inline";
         document.getElementById('gcal-signin').innerHTML = "refresh";
+
+        for (let i = 0; i < sortedTimes.length; i++) {
+          const formattedDate = formatDate(sortedTimes[i][0])
+          console.log(formattedDate)
+
+          document.querySelector('#event' + i).style.display = "flex";
+          document.querySelector('#day-type' + i).innerHTML = formattedDate[0];
+          document.querySelector('#day' + i).innerHTML = formattedDate[1]+ " " + formattedDate[2];
+          document.querySelector('#time' + i).innerHTML = sortedTimes[i][1];
+          document.querySelector('#event-title' + i).innerHTML = sortedEvents[i];
+        }
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
@@ -111,3 +131,14 @@ document.addEventListener("DOMContentLoaded", function() {
     getEvents();
   }
 });
+
+function formatDate (inputDate) {
+    const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
+    const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+    const dateObj = new Date(inputDate);
+    const dayOfWeek = daysOfWeek[dateObj.getUTCDay()];
+    const month = months[dateObj.getUTCMonth()];
+
+    return [dayOfWeek, month, dateObj.getUTCDate()];
+}
