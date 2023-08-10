@@ -20,7 +20,8 @@ function getEvents () {
       async: true,
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
       },
       'contentType': 'json'
     };
@@ -46,7 +47,6 @@ function getEvents () {
         .then((response) => response.json())
         .then((data) => {
           if (data.items) {
-            console.log(data.items)
             data.items.forEach((event) => {
               // end dates?
               const dateTimeParts = event.start.dateTime.split('T');
@@ -82,12 +82,12 @@ function getEvents () {
 
         for (let i = 0; i < sortedTimes.length; i++) {
           const formattedDate = formatDate(sortedTimes[i][0])
-          console.log(formattedDate)
+          const formattedTime = formatTime(sortedTimes[i][1])
 
           document.querySelector('#event' + i).style.display = "flex";
           document.querySelector('#day-type' + i).innerHTML = formattedDate[0];
           document.querySelector('#day' + i).innerHTML = formattedDate[1]+ " " + formattedDate[2];
-          document.querySelector('#time' + i).innerHTML = sortedTimes[i][1];
+          document.querySelector('#time' + i).innerHTML = formattedTime[0] + " " + formattedTime[1];
           document.querySelector('#event-title' + i).innerHTML = sortedEvents[i];
         }
       })
@@ -125,12 +125,6 @@ document.getElementById('gcal-signout').addEventListener('click', function() {
   );
 })
 
-// on load
-document.addEventListener("DOMContentLoaded", function() {
-  if (isSignedIn) {
-    getEvents();
-  }
-});
 
 function formatDate (inputDate) {
     const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
@@ -142,3 +136,28 @@ function formatDate (inputDate) {
 
     return [dayOfWeek, month, dateObj.getUTCDate()];
 }
+
+function formatTime (inputTime) {
+  let ampm = "PM"
+  const [hours, minutes] = inputTime.split(":");
+  let hour = parseInt(hours);
+  
+  if (hour > 12) {
+    hour -= 12
+  } else if (hour < 12) {
+    ampm = "AM"
+  }
+  return [hour + ":" + minutes, ampm]
+}
+
+function updateEventsPeriodically(interval) {
+  setInterval(getEvents, interval);
+}
+
+// on load
+document.addEventListener("DOMContentLoaded", function() {
+  if (isSignedIn) {
+    getEvents();
+    updateEventsPeriodically(60000);
+  }
+});
