@@ -105,8 +105,23 @@ h3 {
     font-family: 'Inter', sans-serif;
 }
 
+
 #start-button:hover {
     background-color:  #EFE9E2;
+}
+
+#pause-button {  
+    background-color: #F4F1E7;
+    font-size: 2em;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 6%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    stroke: #A994869a;
+    fill: #A994869a;
+    stroke-width: 2em;
 }
 
 .scores {

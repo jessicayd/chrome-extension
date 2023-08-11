@@ -3,7 +3,7 @@
 // initalizing
 let gameOver = false;
 let score = 0;
-let tailLength = 3;
+let tailLength = 2;
 
 if (localStorage.getItem('snake-score') != null) {
     document.getElementById("high-score").innerText = localStorage.getItem('snake-score');
@@ -21,6 +21,9 @@ let appleX = 15;
 let appleY = 15;
 
 moved = false;
+let started = false;
+let paused = false;
+let pausedDirection = { x: 0, y: 0 };
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -32,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let gameOver = false;
     
     let lastFrameTime = 0;
+
+    canvas.focus();
+
 
     // initializing and drawing snake game
     function drawGame(timestamp) {
@@ -49,11 +55,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     return;
                 }
 
-                clearScreen();
-                drawSnake();
-                checkApple();
-                drawApple();
-                drawScore();
+                if (!paused) { // Only update and draw when the game is not paused
+                    clearScreen();
+                    drawSnake();
+                    checkApple();
+                    drawApple();
+                    drawScore();
+                }
+
             } else {
                 ctx.fillStyle = "#EFE9E2";
                 ctx.roundRect(canvas.clientWidth/4.5, canvas.clientHeight/2.8, canvas.clientWidth/1.85, canvas.clientHeight/4.5, 15);
@@ -91,12 +100,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // calls startGame when clicking the start button
     const startButton = document.getElementById("start-button");
     startButton.addEventListener("click", clickStartGame);
+
     function clickStartGame() {
         startButton.style.display = "none"; 
         score = 0;
         reset(false);
         startGame();
         xvelocity = 1;
+        started=true
         canvas.focus();
     }
 
@@ -133,20 +144,24 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
         }
 
-        // enter resets game and starts game
-        if (gameOver) {
-            if (event.keyCode === 13) {
+        // enter resets game, starts game, or pauses depending on state of game
+    
+        if (event.keyCode === 13) {
+            if (gameOver) {
                 reset(true);
                 gameOver = false;
                 startGame();
+            } else if (!started) {
+                clickStartGame();
+            } else if (!paused) {
+                pause();
+                paused = true;
+            } else {
+                resume();
+                paused = false;
             }
-            return;
         }
-
-        if (event.keyCode == "13") {
-            clickStartGame();
-        }
-
+    
         // if game hasn't started, arrows don't work
         if (yvelocity===0 && xvelocity===0){
             return;
@@ -238,12 +253,48 @@ document.addEventListener("DOMContentLoaded", function() {
         return gameOver;
     }
 
+    // pause button
+    const pauseButton = document.getElementById("pause-button");
+    pauseButton.addEventListener("click", clickPause);
+
+    function clickPause() {
+        if (!gameOver && started) {
+            if (!paused) {
+                pause()
+            } else {resume()}
+            paused = !paused
+        }
+        canvas.focus();
+    }
+
+    // pause the game
+    function pause() {
+        pausedDirection = { x: xvelocity, y: yvelocity };
+        xvelocity = 0
+        yvelocity = 0
+        ctx.fillStyle = "#EFE9E2";
+        ctx.roundRect(canvas.clientWidth/4.5, canvas.clientHeight/2.8, canvas.clientWidth/1.85, canvas.clientHeight/4.5, 15);
+        ctx.fill();
+        ctx.fillStyle = "#A69687";
+        ctx.font = "25px Inter";
+        ctx.fillText("paused", canvas.clientWidth / 2, canvas.clientHeight / 2.27);
+        ctx.fillStyle = "#A69687";
+        ctx.font = "15px Inter";
+        ctx.fillText("press 'enter' to resume", canvas.clientWidth / 2, canvas.clientHeight / 1.95);
+    }
+
+    // resume the game
+    function resume() {
+        xvelocity = pausedDirection.x
+        yvelocity = pausedDirection.y
+    }
+
     // resets the game 
     function reset(gameOver) {
         if (gameOver) {
             snake.length = 0; 
             score = 0;
-            tailLength = 3;
+            tailLength = 2;
             headX = 5;
             headY = 5;
             xvelocity = 0;
@@ -252,6 +303,10 @@ document.addEventListener("DOMContentLoaded", function() {
             drawSnake();
             drawScore();
             startButton.style.display = "block";
+            moved = false
+            started = false
+            paused = false
+            pausedDirection = { x: 0, y: 0 };
         }
     }
 
