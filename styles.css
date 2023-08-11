@@ -207,10 +207,11 @@ h3 {
     color: #85726B;
     overflow-y: scroll;
     margin: 1em;
+    margin-top: 0;
 }
 
 #type-try-again {
-    padding:2px;
+    padding:3px;
     border-radius:10px;
     border: 1px solid #755F57;
     color: #937F78;
@@ -225,13 +226,14 @@ h3 {
 
 #type-try-again:active {
     background-color: #F6F4EE42;
+
 }
 
 #topbar {
     display: grid;
-    grid-template-columns: 32% 32% 32%;
-    grid-column-gap: 2%;
-    grid-row-gap:20%;
+    grid-template-columns: 31% 31% 31%;
+    grid-column-gap: 3.5%;
+    grid-row-gap:15%;
     text-align:center;
     font-size:14px;
     color: #937F78;
@@ -241,7 +243,7 @@ h3 {
 
 .typers {
     font-family: 'Inter', sans-serif;
-    padding:2px;
+    padding:3px;
     border-radius:3px;
     border: 1px solid #755F57;
     background-color: #F6F4EE9A;

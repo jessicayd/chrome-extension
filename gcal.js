@@ -24,7 +24,6 @@ function getEvents () {
         Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
-        
       },
       'contentType': 'json'
     };
