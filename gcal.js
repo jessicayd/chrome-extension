@@ -1,8 +1,10 @@
 let calendarIds = [];
+let colors = [];
 let sortedMap = new Map();
 
 let isSignedIn = false;
 if (localStorage.getItem('gcal-signed-in') == "true") isSignedIn = true;
+
 
 function getEvents () {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
@@ -20,16 +22,26 @@ function getEvents () {
       async: true,
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
       },
       'contentType': 'json'
     };
 
-    const now = new Date();
-    const isoNow = now.toISOString();
-    const maxResults = 4;
+    fetchEvents(init)
+    // const lastSyncToken = localStorage.getItem('lastSyncToken');
 
-  
+    // if (lastSyncToken == null | lastSyncToken == "undefined") {
+    //   console.log("Performing full sync.");
+    //   fetchEvents(init, null);
+    // } else {
+    //   console.log("Performing incremental sync.");
+    //   fetchEvents(init, lastSyncToken);
+    // }
+
+  })}
+
+  function fetchEvents(init) {
     // getting all calendars
     fetch(`https://www.googleapis.com/calendar/v3/users/me/calendarList`, init)
     .then(response => response.json())
@@ -37,26 +49,44 @@ function getEvents () {
       console.log("Calendar List Data:", calendarListData);
       // getting ids
       calendarIds = calendarListData.items.map(calendar => calendar.id);
+      colors = calendarListData.items.map(calendar => calendar.backgroundColor);
+
+      console.log("colors:", colors)
+      const now = new Date();
+      const isoNow = now.toISOString();
+      const maxResults = 4;
 
       const fetchPromises = [];
       let events = new Map();
+
       // getting most top recent events of each calendar
-      for (const calendarId of calendarIds) {
-        const fetchPromise = fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?maxResults=${maxResults}&timeMin=${isoNow}`, init)
+      for (let i=0; i<calendarIds.length; i++) {
+        console.log("calendarID", calendarIds)
+        let url;
+      
+        // if (lastSyncToken == null | lastSyncToken == "undefined") {
+        url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?maxResults=${maxResults}&timeMin=${isoNow}`
+        // } else {
+          // url = `https://www.googleapis.com/calendar/v3/calendars/syncToken=${lastSyncToken}`
+        // }
+
+        const fetchPromise = fetch(url, init)
         .then((response) => response.json())
         .then((data) => {
           if (data.items) {
+            console.log(data.items)
             data.items.forEach((event) => {
               // end dates?
               const dateTimeParts = event.start.dateTime.split('T');
               const date = dateTimeParts[0];
               const time = dateTimeParts[1].substring(0, 5);
               const location = event.location; 
-              console.log(location)
+              const color = colors[i];
               
               // trim gets rid of leading and trailing white space/commas
-              events.set([date, time], [event.summary.trim(),location]);
+              events.set([date, time], [event.summary.trim(),location, color]);
             });
+            i++;
           } else {
             console.log("No upcoming events found.");
           }
@@ -66,6 +96,10 @@ function getEvents () {
         });
         fetchPromises.push(fetchPromise);
       }
+      // const nextSyncToken = calendarListData.nextSyncToken
+      // localStorage.setItem('lastSyncToken', nextSyncToken);
+      // console.log(nextSyncToken)
+
 
       Promise.all(fetchPromises)
       .then(() => {
@@ -90,15 +124,22 @@ function getEvents () {
           document.querySelector('#time' + i).innerHTML = formattedTime[0] + " " + formattedTime[1];
           document.querySelector('#event-title' + i).innerHTML = sortedEvents[i][0];
           document.querySelector('#location' + i).innerHTML = sortedEvents[i][1] ? sortedEvents[i][1] : '';
+          document.querySelector('#calendar-icon' + i).style.backgroundColor = sortedEvents[i][2];
         }
+        
+        for (let i = sortedTimes.length; i < 4; i++) {
+          const eventElement = document.querySelector('#event' + i);
+          eventElement.style.display = "none";
+        }
+
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
       });
-    });
-  });
 
-}
+
+    });
+  }
 // adding sign in logic to grab recent events
 document.getElementById('gcal-signin').addEventListener('click', getEvents);
 
