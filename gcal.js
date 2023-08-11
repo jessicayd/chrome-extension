@@ -74,13 +74,27 @@ function getEvents () {
           if (data.items) {
             console.log(data.items)
             data.items.forEach((event) => {
-
-              const dateTimeStart = event.start.dateTime.split('T');
-              const dateTimeEnd = event.end.dateTime.split('T');
-              const startDate = dateTimeStart[0];
-              const endDate = dateTimeEnd[0];
-              const startTime = dateTimeStart[1].substring(0, 5);
-              const endTime = dateTimeEnd[1].substring(0, 5);
+              let startDate;
+              let endDate;
+              let startTime
+              let endTime;
+              if (event.start.dateTime) {
+                // Timed event
+                const dateTimeStart = event.start.dateTime.split('T');
+                const dateTimeEnd = event.end.dateTime.split('T');
+                startDate = dateTimeStart[0];
+                endDate = dateTimeEnd[0];
+                startTime = dateTimeStart[1].substring(0, 5);
+                endTime = dateTimeEnd[1].substring(0, 5);
+    
+            } else if (event.start.date) {
+                // All-day event
+                startDate = event.start.date;
+                endDate = event.end.date;
+                startTime = null;
+                endTime = null;
+            }
+        
               const location = event.location; 
               const color = colors[i];
               
@@ -122,9 +136,21 @@ function getEvents () {
           const formattedEndTime = formatTime(sortedTimes[i][3])
 
           const totalStartDate = formattedStartDate[1] + " " + formattedStartDate[2];
-          const totalEndDate = formattedEndDate[1]+ " " + formattedEndDate[2];
-          const totalTime = formattedStartTime[0] + formattedStartTime[1] + " - " + formattedEndTime[0] + formattedEndTime[1];
-
+          
+          let totalTime
+          let totalEndDate
+          let allDay = false
+          console.log(formattedStartTime)
+          if (formattedStartTime === null) {
+            console.log(" all day");
+            totalTime = "all-day";
+            totalEndDate = "";
+            allDay = true;
+          } else {
+            console.log("timed");
+            totalTime = formattedStartTime[0] + formattedStartTime[1] + " - " + formattedEndTime[0] + formattedEndTime[1];
+            totalEndDate = formattedEndDate[1]+ " " + formattedEndDate[2];
+          }
 
           document.querySelector('#event' + i).style.display = "flex";
           document.querySelector('#day-type' + i).innerHTML = formattedStartDate[0];
@@ -133,9 +159,12 @@ function getEvents () {
           if (sortedTimes[i][0] == sortedTimes[i][2]) {
             document.querySelector('#time' + i).innerHTML = totalTime;
           } else {
-            document.querySelector('#time' + i).innerHTML = totalTime + " " + totalEndDate
+            document.querySelector('#time' + i).innerHTML = totalTime + " " + totalEndDate;
           }
           
+          if (allDay) {
+            document.querySelector('#all-day' + i).style.display = "flex" ;
+          }
           document.querySelector('#event-title' + i).innerHTML = sortedEvents[i][0];
           document.querySelector('#location' + i).innerHTML = sortedEvents[i][1] ? sortedEvents[i][1] : '';
           document.querySelector('#calendar-icon' + i).style.backgroundColor = sortedEvents[i][2];
@@ -144,6 +173,7 @@ function getEvents () {
         for (let i = sortedTimes.length; i < 4; i++) {
           const eventElement = document.querySelector('#event' + i);
           eventElement.style.display = "none";
+          
         }
 
       })
@@ -199,6 +229,9 @@ function formatDate (inputDate) {
 }
 
 function formatTime (inputTime) {
+  if (inputTime == null) {
+    return null
+  }
   let ampm = "pm"
   const [hours, minutes] = inputTime.split(":");
   let hour = parseInt(hours);
