@@ -50,11 +50,11 @@ form {
     font-size: 20px;
     font-weight: 400;
 
-    background-color: rgb(229,219,209);
+    background-color: #E5DBD1;
     border: none;
     border-radius: 15px;
-    color: rgb(147, 127, 120);
-    box-shadow: 0px 5px 10px rgba(108, 99, 90, 0.7);
+    color: #937F78;
+    box-shadow: 0px 5px 10px #6C635AB3;
 }
 
 ::placeholder {
@@ -71,10 +71,10 @@ form {
 
 /* snake game and notes */
 .slide.snake-container {
-    border: 1px solid rgb(117, 95, 87);
+    border: 1px solid #755F57;
     height:400px;
     width: 48em;
-    background-color: rgb(229,219,209);
+    background-color: #E5DBD1;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
@@ -92,7 +92,7 @@ h3 {
 
 #start-button {
     padding: 0.5em 1.5em;
-    background-color: rgb(239, 233, 226);
+    background-color: #EFE9E2;
     color: #A99486;
     font-size: 1.5em;
     border: none;
@@ -106,7 +106,7 @@ h3 {
 }
 
 #start-button:hover {
-    background-color:  rgb(239, 233, 226);
+    background-color:  #EFE9E2;
 }
 
 .scores {
@@ -149,10 +149,10 @@ h3 {
 
 /* notes */
 .slide.notepad{
-    border: 1px solid rgb(117, 95, 87);
+    border: 1px solid #755F57;
     height:400px;
     width: 48em;
-    background-color: rgb(229,219,209);
+    background-color: #E5DBD1;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -181,11 +181,11 @@ h3 {
     padding:10px;
     height:400px;
     width: 48em;
-    background-color: rgb(229,219,209);
-    border: 1px solid rgb(117, 95, 87);
+    background-color: #E5DBD1;
+    border: 1px solid #755F57;
     padding: 1em;
     position:relative;
-    color: rgb(117, 95, 87);
+    color: #755F57;
 }
 
 #typing-quote {
@@ -203,8 +203,8 @@ h3 {
     font-size: 13px;
     font-family: Menlo, 'sans-serif';
     padding: 1em;
-    background-color: #f6f4ee;
-    color: rgb(133, 114, 107);
+    background-color: #F6F4EE;
+    color: #85726B;
     overflow-y: scroll;
     margin: 1em;
     margin-top: 0;
@@ -213,19 +213,20 @@ h3 {
 #type-try-again {
     padding:3px;
     border-radius:10px;
-    border: 1px solid rgb(144, 120, 112);
-    color: rgb(147, 127, 120);
-    font-size: 14px; 
+    border: 1px solid #755F57;
+    color: #937F78;
+    font-size: 15px; 
     cursor:pointer;
-    background-color: #f6f4ee;
+    background-color: #F6F4EE9A;
 }
 
 #type-try-again:hover {
-    background-color: #f6f4eeba;
+    background-color: #F6F4EE68;
 }
 
 #type-try-again:active {
-    background-color: #f6f4ee95;
+    background-color: #F6F4EE42;
+
 }
 
 #topbar {
@@ -235,17 +236,17 @@ h3 {
     grid-row-gap:15%;
     text-align:center;
     font-size:14px;
-    color: rgb(147, 127, 120);
-    margin: 5px 1em;
-    margin-bottom:6px;
+    color: #937F78;
+    margin: 5px 0;
+    margin-bottom:10px;
 }
 
 .typers {
     font-family: 'Inter', sans-serif;
     padding:3px;
     border-radius:3px;
-    border: 1px solid rgb(144, 120, 112);
-    background-color: #f6f4ee;
+    border: 1px solid #755F57;
+    background-color: #F6F4EE9A;
 }
 
 #turtle {
@@ -266,10 +267,10 @@ h3 {
     border:solid;
     height:400px;
     width: 48em;
-    background-color: rgb(229,219,209);
-    border: 1px solid rgb(117, 95, 87);
+    background-color: #E5DBD1;
+    border: 1px solid #755F57;
     padding: 1em;
-    color: rgb(117, 95, 87);
+    color: #755F57;
 }
 
 .gcal-buttons {
@@ -277,11 +278,11 @@ h3 {
     margin: 8px 2px;
     margin-top: 5px;
     border-radius:5px;
-    border: 1px solid rgb(117, 95, 87);
-    color: rgb(147, 127, 120);
+    border: 1px solid #755F57;
+    color: #937F78;
     font-size: 13px; 
     cursor:pointer;
-    background-color: #f6f4ee9a;
+    background-color: #F6F4EE9A;
 }
 
 #gcal-signout {
@@ -289,11 +290,11 @@ h3 {
 }
 
 .gcal-buttons:hover {
-    background-color: #f6f4ee68;
+    background-color: #F6F4EE68;
 }
 
 .gcal-buttons:active {
-    background-color: #f6f4ee42;
+    background-color: #F6F4EE42;
 }
 
 
@@ -347,7 +348,17 @@ h3 {
     flex-direction: column;
     align-items: left;
     padding: 0.5em;
+    overflow-x: hidden;
 }
+
+#event-description:hover, #event-description:active, #event-description:focus {
+    overflow-x: auto;
+}
+  
+#event-description::-webkit-scrollbar {
+    height: 0px;
+}
+  
 
 #event-description h2{
     font-size: 1.70em;
@@ -373,9 +384,7 @@ h3 {
 
 .location {
     padding-left: 10px;
-    max-width: 23em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 15em;
     white-space: nowrap;
     padding-right: 10px;
 }
@@ -384,6 +393,7 @@ h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;
+    min-width: 9em;
 }
 
 
@@ -400,8 +410,8 @@ h3 {
 
 .remove-button, .edit-button, .add {
     margin: 0 1px;
-    background-color: rgb(229,219,209);
-    color: rgb(147, 127, 120);
+    background-color: #E5DBD1;
+    color: #937F78;
     border: none;
     padding: 3px 8px; 
     border-radius: 5px; 
@@ -414,11 +424,11 @@ h3 {
 }
 
 .remove-button:hover, .edit-button:hover, .add:hover {
-    background-color: rgb(227, 216, 204);
+    background-color: #E3D8CC;
 }
 
 .remove-button:active, .edit-button:active, .add:active {
-    background-color: rgb(218, 206, 194);
+    background-color: #DACEC2;
 }
 
 .button-wrapper {
@@ -431,7 +441,7 @@ h3 {
 
 .icon-name {
     margin: 0 auto;
-    color: rgb(147, 127, 120);
+    color: #937F78;
     padding: 2px 0;
     font-size: 10px; 
     width: 75px;
@@ -444,7 +454,7 @@ h3 {
     height:75px;
     opacity:75%;
     border-radius:10px;
-    box-shadow: 0px 2px 5px rgba(108, 99, 90, 0.6);
+    box-shadow: 0px 2px 5px #6C635A99;
 }
 .icon-image:hover, #prev:hover, #next:hover {
     opacity:60%;

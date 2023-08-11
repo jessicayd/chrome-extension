@@ -55,18 +55,18 @@ input.addEventListener('input', function() {
         if (char.innerText == inputChars[index]) {
             hasFailed = false;
             char.classList.add("success");
-            char.style.color = "rgb(70, 171, 87)";
+            char.style.color = "#46AB57";
         }
         
         // backspace
         else if (inputChars[index] == null) {
             if (char.classList.contains("success")) {
                 char.classList.remove("success");
-                char.style.color = "rgb(117, 95, 87)";
+                char.style.color = "#755F57";
             }
             else if (char.classList.contains("fail")) {
                 char.classList.remove("fail");
-                char.style.color = "rgb(117, 95, 87)";
+                char.style.color = "#755F57";
             }
         }
 
@@ -75,7 +75,7 @@ input.addEventListener('input', function() {
                 hasFailed = true;
                 mistakes += 1;
                 char.classList.add("fail");
-                char.style.color= "rgb(247, 106, 106)";
+                char.style.color= "#F76A6A";
             }
             errors.innerText = mistakes;
         }

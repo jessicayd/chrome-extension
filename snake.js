@@ -55,13 +55,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 drawApple();
                 drawScore();
             } else {
-                ctx.fillStyle = "rgb(239, 233, 226)";
+                ctx.fillStyle = "#EFE9E2";
                 ctx.roundRect(canvas.clientWidth/4.5, canvas.clientHeight/2.8, canvas.clientWidth/1.85, canvas.clientHeight/4.5, 15);
                 ctx.fill();
-                ctx.fillStyle = "rgb(166, 150, 135)";
+                ctx.fillStyle = "#A69687";
                 ctx.font = "25px Inter";
                 ctx.fillText("game over! ", canvas.clientWidth / 2, canvas.clientHeight / 2.27);
-                ctx.fillStyle = "rgb(166, 150, 135)";
+                ctx.fillStyle = "#A69687";
                 ctx.font = "15px Inter";
                 ctx.fillText("press 'enter' to restart ", canvas.clientWidth / 2, canvas.clientHeight / 1.95);
 
@@ -108,10 +108,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // draws the snake
     function drawSnake(){
-        ctx.fillStyle="rgb(235, 189, 103)"; 
+        ctx.fillStyle="#EBBD67"; 
         ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize)
 
-        ctx.fillStyle="rgb(145, 184, 152)";
+        ctx.fillStyle="#91B898";
         for(let i=0; i<snake.length; i++){
             let part=snake[i]
             ctx.fillRect(part.x*tileCount, part.y*tileCount, tileSize, tileSize)
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // draws the apple
     function drawApple(){
-        ctx.fillStyle = "rgb(242, 145, 145)";
+        ctx.fillStyle = "#F29191";
         ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize)
     }
 
