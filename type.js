@@ -10,7 +10,6 @@ scoreTag = document.getElementById('score-tag'),
 turtle = document.getElementById('turtle'),
 box = document.querySelector('.slide.type-test');
 
-
 let totalTime = 0,
 quoteChars = [],
 mistakes = 0,
@@ -98,6 +97,12 @@ const updateTimer = () => {
     let width = box.offsetWidth - 27;
     const currentTime = Date.now();
     const elapsedTime = currentTime - startTime;
+
+    if (localStorage.getItem('slideIndex') != 4) {
+        stopTimer();
+        input.disabled = true;
+        return;
+    }
 
     const minutes = Math.floor(elapsedTime / 60000);
     const seconds = Math.floor((elapsedTime % 60000) / 1000);
