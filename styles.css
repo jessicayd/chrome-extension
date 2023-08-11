@@ -111,7 +111,7 @@ h3 {
 }
 
 #pause-button {  
-    background-color: #F4F1E7;
+    background-color: #F4F1E700;
     font-size: 2em;
     border: none;
     cursor: pointer;
@@ -413,7 +413,7 @@ h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;
-    max-width: 9em;
+    max-width: 10em;
 }
 
 
