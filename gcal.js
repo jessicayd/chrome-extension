@@ -52,7 +52,6 @@ function getEvents () {
       calendarIds = calendarListData.items.map(calendar => calendar.id);
       colors = calendarListData.items.map(calendar => calendar.backgroundColor);
 
-      console.log("colors:", colors)
       const now = new Date();
       const isoNow = now.toISOString();
       const maxResults = 4;
@@ -62,7 +61,6 @@ function getEvents () {
 
       // getting most top recent events of each calendar
       for (let i=0; i<calendarIds.length; i++) {
-        console.log("calendarID", calendarIds)
         let url;
       
         // if (lastSyncToken == null | lastSyncToken == "undefined") {
@@ -77,15 +75,18 @@ function getEvents () {
           if (data.items) {
             console.log(data.items)
             data.items.forEach((event) => {
-              // end dates?
-              const dateTimeParts = event.start.dateTime.split('T');
-              const date = dateTimeParts[0];
-              const time = dateTimeParts[1].substring(0, 5);
+
+              const dateTimeStart = event.start.dateTime.split('T');
+              const dateTimeEnd = event.end.dateTime.split('T');
+              const startDate = dateTimeStart[0];
+              const endDate = dateTimeEnd[0];
+              const startTime = dateTimeStart[1].substring(0, 5);
+              const endTime = dateTimeEnd[1].substring(0, 5);
               const location = event.location; 
               const color = colors[i];
               
               // trim gets rid of leading and trailing white space/commas
-              events.set([date, time], [event.summary.trim(),location, color]);
+              events.set([startDate, startTime, endDate, endTime], [event.summary.trim(),location, color]);
             });
             i++;
           } else {
@@ -116,13 +117,26 @@ function getEvents () {
         document.getElementById('gcal-signin').innerHTML = "refresh";
 
         for (let i = 0; i < sortedTimes.length; i++) {
-          const formattedDate = formatDate(sortedTimes[i][0])
-          const formattedTime = formatTime(sortedTimes[i][1])
+          const formattedStartDate = formatDate(sortedTimes[i][0])
+          const formattedStartTime = formatTime(sortedTimes[i][1])
+          const formattedEndDate = formatDate(sortedTimes[i][2])
+          const formattedEndTime = formatTime(sortedTimes[i][3])
+
+          const totalStartDate = formattedStartDate[1] + " " + formattedStartDate[2];
+          const totalEndDate = formattedEndDate[1]+ " " + formattedEndDate[2];
+          const totalTime = formattedStartTime[0] + formattedStartTime[1] + " - " + formattedEndTime[0] + formattedEndTime[1];
+
 
           document.querySelector('#event' + i).style.display = "flex";
-          document.querySelector('#day-type' + i).innerHTML = formattedDate[0];
-          document.querySelector('#day' + i).innerHTML = formattedDate[1]+ " " + formattedDate[2];
-          document.querySelector('#time' + i).innerHTML = formattedTime[0] + " " + formattedTime[1];
+          document.querySelector('#day-type' + i).innerHTML = formattedStartDate[0];
+          document.querySelector('#day' + i).innerHTML = totalStartDate;
+
+          if (sortedTimes[i][0] == sortedTimes[i][2]) {
+            document.querySelector('#time' + i).innerHTML = totalTime;
+          } else {
+            document.querySelector('#time' + i).innerHTML = totalTime + " " + totalEndDate
+          }
+          
           document.querySelector('#event-title' + i).innerHTML = sortedEvents[i][0];
           document.querySelector('#location' + i).innerHTML = sortedEvents[i][1] ? sortedEvents[i][1] : '';
           document.querySelector('#calendar-icon' + i).style.backgroundColor = sortedEvents[i][2];
@@ -186,14 +200,14 @@ function formatDate (inputDate) {
 }
 
 function formatTime (inputTime) {
-  let ampm = "PM"
+  let ampm = "pm"
   const [hours, minutes] = inputTime.split(":");
   let hour = parseInt(hours);
   
   if (hour > 12) {
     hour -= 12
   } else if (hour < 12) {
-    ampm = "AM"
+    ampm = "am"
   }
   return [hour + ":" + minutes, ampm]
 }
