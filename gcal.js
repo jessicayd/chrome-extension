@@ -53,7 +53,9 @@ function getEvents () {
 
       const now = new Date();
       const isoNow = now.toISOString();
-      const maxResults = true;
+      const twoWeeksLater = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+      const timeMax = twoWeeksLater.toISOString();
+
 
       const fetchPromises = [];
       let events = new Map();
@@ -63,7 +65,7 @@ function getEvents () {
         let url;
       
         // if (lastSyncToken == null | lastSyncToken == "undefined") {
-        url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&singleEvents=${true}&timeMin=${isoNow}`
+        url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&singleEvents=${true}&timeMin=${isoNow}&timeMax=${timeMax}`
         // } else {
           // url = `https://www.googleapis.com/calendar/v3/calendars/syncToken=${lastSyncToken}`
         // }
