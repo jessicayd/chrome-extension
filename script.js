@@ -182,5 +182,5 @@ if (localStorage.getItem(`notes`) == null || localStorage.getItem(`notes`) == 'n
 note.innerHTML = localStorage.getItem(`notes`);
 
 note.addEventListener('input', function(){
-    localStorage.setItem(`notes`,this.value);
+    localStorage.setItem(`notes`,this.innerHTML);
 })

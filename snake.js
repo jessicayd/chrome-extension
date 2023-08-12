@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     gameOver = true;
                     return;
                 }
-
                 if (!paused) { // Only update and draw when the game is not paused
                     clearScreen();
                     drawSnake();
@@ -291,6 +290,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function resume() {
         xvelocity = pausedDirection.x
         yvelocity = pausedDirection.y
+        requestAnimationFrame(drawGame);
     }
 
     // resets the game 
@@ -313,6 +313,13 @@ document.addEventListener("DOMContentLoaded", function() {
             pausedDirection = { x: 0, y: 0 };
         }
     }
+
+    window.addEventListener("blur", function() {
+        if (!gameOver && started && !paused) {
+            pause();
+            paused = true;
+        }
+    });
 
     startGame();
 });

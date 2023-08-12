@@ -175,13 +175,13 @@ h3 {
 }
 
 #notes{
-    resize: none;
+    text-align: left;
+    font-size:13px;
     font-family: 'Inter', sans-serif;
     padding: 1em;
     height: 370px;
-    width: 41em;
+    width: 43em;
     overflow-y: auto;
-    border:none;
     background-color: #F4F1E7;
     color: #856f61;
 }
@@ -272,8 +272,6 @@ h3 {
     opacity:70%
 }
 
-
-
 /* calendar gcal */
 .slide.calendar {
     margin:auto;
@@ -312,26 +310,44 @@ h3 {
     background-color: #F6F4EE42;
 }
 
-
-.event {
+#no-events {
     background-color: #F4F1E7;
     padding: 1em;
     margin: 0.5em auto;
+    width: 45em;
+    border-radius: 12px;
+    color: #937F78;
+}
+
+.event {
     width: 45em;
     border-radius: 15px;
     flex-direction: row;
     display: none;
     align-items: center;
     border: none;
+    margin: 0 auto;
+    text-decoration: none;
 }
 
-#event-date {
+#event-date, #event-description {
+    background-color: #F4F1E7;
+    height: 8vh;
+    margin: auto;
+    justify-content: center;
     flex: 1.0;
+    border-radius: 15px;
     color: #A99486;
     text-align: left;
     padding-left: 1em;
     display: flex;
     flex-direction: column;
+}
+
+#event-description {
+    flex: 5;
+    overflow-x: hidden;
+    align-items: left;
 }
 
 #event-date h3 {
@@ -347,23 +363,6 @@ h3 {
     font-size: 2em;
     font-weight: 500;
     margin-top: -3px;
-
-}
-
-.vl {
-    border-left: 2px solid #A99486;
-    height: 70%;
-    margin: 15px;
-  }
-
-#event-description {
-    flex: 5;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    padding: 0.5em;
-    overflow-x: hidden;
 }
 
 #event-description:hover, #event-description:active, #event-description:focus {
@@ -395,11 +394,13 @@ h3 {
     height: 0.75em;
     background-color: #DB5F5F;
     margin-right: 10px;
+    border: 0.5px solid #A99486;
 }
 
 .all-day-icon {
     display: none;
-    padding-left: 1px;
+    padding-left: 2px;
+    margin-top: 2px;
 }
 
 .location {
