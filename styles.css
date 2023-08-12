@@ -327,37 +327,43 @@ h3 {
     align-items: center;
     border: none;
     margin: 0 auto;
+}
+
+.event-date, .event-description {
+    background-color: #F4F1E7;
+    padding: 1.25em 0;
+    margin: 8px auto;
+    justify-content: center;
+    flex: 1.0;
+    border-radius: 10px;
+    color: #A99486;
+    text-align: left;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
 }
 
-#event-date, #event-description {
-    background-color: #F4F1E7;
-    height: 8vh;
-    margin: auto;
-    justify-content: center;
-    flex: 1.0;
-    border-radius: 15px;
-    color: #A99486;
-    text-align: left;
-    padding-left: 1em;
-    display: flex;
-    flex-direction: column;
+.event-date {
+    visibility: visible;
+    padding-right:2em;
+    margin-right:1em;
 }
 
-#event-description {
+.event-description {
     flex: 5;
     overflow-x: hidden;
     align-items: left;
 }
 
-#event-date h3 {
+.event-date h3 {
     margin: 0;
     font-family: 'Inter', sans-serif;
     font-size: 0.5em;
     padding-top: 0.5em;
 }
 
-#event-date h2 {
+.event-date h2 {
     margin: 0;
     font-family: 'Inter', sans-serif;
     font-size: 2em;
@@ -365,23 +371,23 @@ h3 {
     margin-top: -3px;
 }
 
-#event-description:hover, #event-description:active, #event-description:focus {
+.event-description:hover, .event-description:active, .event-description:focus {
     overflow-x: auto;
 }
   
-#event-description::-webkit-scrollbar {
+.event-description::-webkit-scrollbar {
     height: 0px;
 }
   
 
-#event-description h2{
+.event-description h2{
     font-size: 1.70em;
     font-family: "Inter", sans-serif;
     margin: 0;
     font-weight: 500;
 }
 
-#event-details {
+.event-details {
     align-items: center;
     font-size: 1em;
     font-family: 'Inter', sans-serif;
@@ -410,7 +416,7 @@ h3 {
     padding-right: 15px;
 }
 
-#event-details h3 {
+.event-details h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;

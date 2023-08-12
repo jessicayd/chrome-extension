@@ -116,8 +116,11 @@ function getEvents () {
 
         document.querySelector("#no-events").style.display = "block";
         for (let i = 0; i < sortedTimes.length; i++) {
-          if (i != 0 && sortedTimes[i-1][0] == sortedTimes[i][0]) {
-            console.log(i);
+          if (i != 0) {
+            if (sortedTimes[i-1][0] == sortedTimes[i][0]) {
+              document.querySelector('#event-date' + (i)).style.visibility = "hidden";
+            }
+            else document.querySelector('#event-date' + (i)).style.visibility = "visible";
           }
 
           const formattedStartDate = formatDate(sortedTimes[i][0])
@@ -125,7 +128,7 @@ function getEvents () {
           const formattedEndDate = formatDate(sortedTimes[i][2])
           const formattedEndTime = formatTime(sortedTimes[i][3])
 
-          document.querySelector('#event' + i).href = `https://calendar.google.com/calendar/u/${email}/r/week/${sortedTimes[i][0].split('-').join('/')}`
+          document.querySelector('#event-description' + i).href = `https://calendar.google.com/calendar/u/${email}/r/week/${sortedTimes[i][0].split('-').join('/')}`
 
           const totalStartDate = formattedStartDate[1] + " " + formattedStartDate[2];
           
