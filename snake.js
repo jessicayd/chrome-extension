@@ -38,6 +38,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     canvas.focus();
 
+    canvas.addEventListener('blur', function() {
+        if (!gameOver && started && !paused) {
+            pause();
+            paused = true;
+            canvas.focus();
+        }
+    });
+
 
     // initializing and drawing snake game
     function drawGame(timestamp) {
