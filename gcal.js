@@ -45,7 +45,9 @@ function getEvents () {
 
       const now = new Date();
       const isoNow = now.toISOString();
-      const maxResults = 4;
+      const twoWeeksLater = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+      const timeMax = twoWeeksLater.toISOString();
+
 
       const fetchPromises = [];
       let events = new Map();
@@ -53,7 +55,7 @@ function getEvents () {
       // getting most top recent events of each calendar
       for (let i=0; i<calendarIds.length; i++) {
         if (selected[i] != true) continue;
-        let url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?maxResults=${maxResults}&timeMin=${isoNow}`
+        let url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&singleEvents=${true}&timeMin=${isoNow}&timeMax=${timeMax}`
         
         const fetchPromise = fetch(url, init)
         .then((response) => response.json())
@@ -101,7 +103,7 @@ function getEvents () {
 
       Promise.all(fetchPromises)
       .then(() => {
-        const index = Math.min(events.size, maxResults);
+        const index = Math.min(events.size, 4);
         const sortedMap = new Map([...events.entries()].sort());
 
         sortedTimes = Array.from(sortedMap.keys()).slice(0, index);

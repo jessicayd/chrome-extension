@@ -153,7 +153,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 startGame();
             } else if (!started) {
                 clickStartGame();
-            } else if (!paused) {
+            }
+        }
+
+        if (event.keyCode === 32 && !gameOver && started) {
+            if (!paused) {
                 pause();
                 paused = true;
             } else {
@@ -280,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ctx.fillText("paused", canvas.clientWidth / 2, canvas.clientHeight / 2.27);
         ctx.fillStyle = "#A69687";
         ctx.font = "15px Inter";
-        ctx.fillText("press 'enter' to resume", canvas.clientWidth / 2, canvas.clientHeight / 1.95);
+        ctx.fillText("press 'space' to resume", canvas.clientWidth / 2, canvas.clientHeight / 1.95);
     }
 
     // resume the game
