@@ -111,7 +111,7 @@ h3 {
 }
 
 #pause-button {  
-    background-color: #F4F1E700;
+    background-color: #F4F1E7;
     font-size: 2em;
     border: none;
     cursor: pointer;
@@ -397,23 +397,18 @@ h3 {
     margin-right: 10px;
 }
 
-.all-day-icon {
-    display: none;
-    padding-left: 1px;
-}
-
 .location {
     padding-left: 10px;
     max-width: 15em;
     white-space: nowrap;
-    padding-right: 15px;
+    padding-right: 10px;
 }
 
 #event-details h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;
-    max-width: 15em;
+    min-width: 9em;
 }
 
 

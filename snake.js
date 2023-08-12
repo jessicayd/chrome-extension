@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.focus();
 
     canvas.addEventListener('blur', function() {
-        if (!gameOver && started && !paused) {
+        const clickedPauseButton = event.relatedTarget === pauseButton;
+        if (!gameOver && started && !paused && !clickedPauseButton) {
             pause();
-            paused = true;
             canvas.focus();
         }
     });
@@ -167,10 +167,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.keyCode === 32 && !gameOver && started) {
             if (!paused) {
                 pause();
-                paused = true;
             } else {
                 resume();
-                paused = false;
             }
         }
     
@@ -272,9 +270,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function clickPause() {
         if (!gameOver && started) {
             if (!paused) {
-                pause()
-            } else {resume()}
-            paused = !paused
+                console.log("clicked pause");
+                pause();
+            } else {
+                resume();
+            }
         }
         canvas.focus();
     }
@@ -282,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // pause the game
     function pause() {
         pausedDirection = { x: xvelocity, y: yvelocity };
+        paused = true
         xvelocity = 0
         yvelocity = 0
         ctx.fillStyle = "#EFE9E2";
@@ -297,8 +298,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // resume the game
     function resume() {
+        paused = false;
         xvelocity = pausedDirection.x
         yvelocity = pausedDirection.y
+        
     }
 
     // resets the game 
