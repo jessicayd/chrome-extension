@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     canvas.focus();
 
+    // pause if lose focus (except pause button)
     canvas.addEventListener('blur', function() {
         const clickedPauseButton = event.relatedTarget === pauseButton;
         if (!gameOver && started && !paused && !clickedPauseButton) {

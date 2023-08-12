@@ -397,9 +397,14 @@ h3 {
     margin-right: 10px;
 }
 
+.all-day-icon {
+    display: none;
+    padding-left: 1px;
+}
+
 .location {
     padding-left: 10px;
-    max-width: 15em;
+    min-width: 15em;
     white-space: nowrap;
     padding-right: 10px;
 }
@@ -408,7 +413,7 @@ h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;
-    min-width: 9em;
+    max-width: 15em;
 }
 
 
