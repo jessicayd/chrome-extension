@@ -17,6 +17,13 @@ isTimerStarted = false,
 startTime = 0, intervalId = null, quoteLength = 0;
 let hasFailed = false;
 
+window.addEventListener('blur', function() {
+    stopTimer();
+    input.disabled = true;
+    return;
+});
+
+
 // gets paragraph and sets initializing stuff for reset
 const loadQuote = async () => {
     const response = await fetch("./quotes.json");
