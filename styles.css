@@ -111,7 +111,7 @@ h3 {
 }
 
 #pause-button {  
-    background-color: #F4F1E700;
+    background-color: #F4F1E7;
     font-size: 2em;
     border: none;
     cursor: pointer;
@@ -411,9 +411,9 @@ h3 {
 
 .location {
     padding-left: 10px;
-    max-width: 15em;
+    min-width: 15em;
     white-space: nowrap;
-    padding-right: 15px;
+    padding-right: 10px;
 }
 
 .event-details h3 {

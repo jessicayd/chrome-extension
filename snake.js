@@ -38,6 +38,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     canvas.focus();
 
+    // pause if lose focus (except pause button)
+    canvas.addEventListener('blur', function() {
+        const clickedPauseButton = event.relatedTarget === pauseButton;
+        if (!gameOver && started && !paused && !clickedPauseButton) {
+            pause();
+            canvas.focus();
+        }
+    });
+
 
     // initializing and drawing snake game
     function drawGame(timestamp) {
@@ -54,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     gameOver = true;
                     return;
                 }
+
                 if (!paused) { // Only update and draw when the game is not paused
                     clearScreen();
                     drawSnake();
@@ -158,10 +168,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.keyCode === 32 && !gameOver && started) {
             if (!paused) {
                 pause();
-                paused = true;
             } else {
                 resume();
-                paused = false;
             }
         }
     
@@ -263,9 +271,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function clickPause() {
         if (!gameOver && started) {
             if (!paused) {
-                pause()
-            } else {resume()}
-            paused = !paused
+                console.log("clicked pause");
+                pause();
+            } else {
+                resume();
+            }
         }
         canvas.focus();
     }
@@ -273,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // pause the game
     function pause() {
         pausedDirection = { x: xvelocity, y: yvelocity };
+        paused = true
         xvelocity = 0
         yvelocity = 0
         ctx.fillStyle = "#EFE9E2";
@@ -288,9 +299,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // resume the game
     function resume() {
+        paused = false;
         xvelocity = pausedDirection.x
         yvelocity = pausedDirection.y
-        requestAnimationFrame(drawGame);
+        
     }
 
     // resets the game 
@@ -313,13 +325,6 @@ document.addEventListener("DOMContentLoaded", function() {
             pausedDirection = { x: 0, y: 0 };
         }
     }
-
-    window.addEventListener("blur", function() {
-        if (!gameOver && started && !paused) {
-            pause();
-            paused = true;
-        }
-    });
 
     startGame();
 });
