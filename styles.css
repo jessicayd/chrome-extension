@@ -214,14 +214,14 @@ h3 {
     text-align:left;
     resize:none;
     height:100%;
-    width: 40em;
+    width: 42.25em;
     font-size: 13px;
     font-family: Menlo, 'sans-serif';
-    padding: 1em;
+    padding: 0.75em;
     background-color: #F6F4EE;
     color: #85726B;
     overflow-y: scroll;
-    margin: 1em;
+    margin: 0.5em auto;
     margin-top: 0;
 }
 

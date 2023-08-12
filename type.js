@@ -17,12 +17,6 @@ isTimerStarted = false,
 startTime = 0, intervalId = null, quoteLength = 0;
 let hasFailed = false;
 
-window.addEventListener('blur', function() {
-    stopTimer();
-    input.disabled = true;
-    return;
-});
-
 
 // gets paragraph and sets initializing stuff for reset
 const loadQuote = async () => {
@@ -43,9 +37,9 @@ const loadQuote = async () => {
   };
 
 // don't paste into the box D:
-input.addEventListener('paste', (event) => {
-    event.preventDefault(); 
-});
+// input.addEventListener('paste', (event) => {
+//     event.preventDefault(); 
+// });
 
 // handles when u type
 input.addEventListener('input', function() {
@@ -110,6 +104,12 @@ const updateTimer = () => {
         input.disabled = true;
         return;
     }
+
+    window.addEventListener('blur', function() {
+        stopTimer();
+        input.disabled = true;
+        return;
+    });
 
     const minutes = Math.floor(elapsedTime / 60000);
     const seconds = Math.floor((elapsedTime % 60000) / 1000);
