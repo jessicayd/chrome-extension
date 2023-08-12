@@ -53,7 +53,7 @@ function getEvents () {
 
       const now = new Date();
       const isoNow = now.toISOString();
-      // const maxResults = 4;
+      const maxResults = true;
 
       const fetchPromises = [];
       let events = new Map();
@@ -63,7 +63,7 @@ function getEvents () {
         let url;
       
         // if (lastSyncToken == null | lastSyncToken == "undefined") {
-        url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&timeMin=${isoNow}`
+        url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&singleEvents=${true}&timeMin=${isoNow}`
         // } else {
           // url = `https://www.googleapis.com/calendar/v3/calendars/syncToken=${lastSyncToken}`
         // }
