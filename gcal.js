@@ -41,20 +41,22 @@ function getEvents () {
       // getting ids
       calendarIds = calendarListData.items.map(calendar => calendar.id);
       colors = calendarListData.items.map(calendar => calendar.backgroundColor);
-      const selected = calendarListData.items.map(calendar => calendar.selected)
 
       const now = new Date();
       const isoNow = now.toISOString();
       const twoWeeksLater = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
       const timeMax = twoWeeksLater.toISOString();
-
+      let email = "";
 
       const fetchPromises = [];
       let events = new Map();
 
       // getting most top recent events of each calendar
       for (let i=0; i<calendarIds.length; i++) {
-        if (selected[i] != true) continue;
+        if (calendarListData.items[i].primary == true) email = calendarListData.items[i].summary;
+        if (calendarListData.items[i].selected != true) continue;
+
+        console.log(email)
         let url = `https://www.googleapis.com/calendar/v3/calendars/${calendarIds[i]}/events?&singleEvents=${true}&timeMin=${isoNow}&timeMax=${timeMax}`
         
         const fetchPromise = fetch(url, init)
@@ -112,11 +114,21 @@ function getEvents () {
         document.getElementById('gcal-signout').style.display = "inline";
         document.getElementById('gcal-signin').innerHTML = "refresh";
 
+        document.querySelector("#no-events").style.display = "block";
         for (let i = 0; i < sortedTimes.length; i++) {
+          if (i != 0) {
+            if (sortedTimes[i-1][0] == sortedTimes[i][0]) {
+              document.querySelector('#event-date' + (i)).style.visibility = "hidden";
+            }
+            else document.querySelector('#event-date' + (i)).style.visibility = "visible";
+          }
+
           const formattedStartDate = formatDate(sortedTimes[i][0])
           const formattedStartTime = formatTime(sortedTimes[i][1])
           const formattedEndDate = formatDate(sortedTimes[i][2])
           const formattedEndTime = formatTime(sortedTimes[i][3])
+
+          document.querySelector('#event-description' + i).href = `https://calendar.google.com/calendar/u/${email}/r/week/${sortedTimes[i][0].split('-').join('/')}`
 
           const totalStartDate = formattedStartDate[1] + " " + formattedStartDate[2];
           
@@ -125,14 +137,14 @@ function getEvents () {
           let allDay = false
   
           if (formattedStartTime === null) {
-            totalTime = "all-day";
+            totalTime = "all day";
             totalEndDate = "";
             allDay = true;
           } else {
             totalTime = formattedStartTime[0] + formattedStartTime[1] + " - " + formattedEndTime[0] + formattedEndTime[1];
             totalEndDate = formattedEndDate[1]+ " " + formattedEndDate[2];
           }
-
+          document.querySelector("#no-events").style.display = "none";
           document.querySelector('#event' + i).style.display = "flex";
           document.querySelector('#day-type' + i).innerHTML = formattedStartDate[0];
           document.querySelector('#day' + i).innerHTML = totalStartDate;
@@ -181,7 +193,7 @@ document.getElementById('gcal-signout').addEventListener('click', function() {
         "GET", 
         "https://accounts.google.com/o/oauth2/revoke?token=" + token);
         xhr.send();
-
+        document.querySelector("#no-events").style.display = "block";
         console.log('revoked token');
         localStorage.setItem('gcal-signed-in',"false");
         isSignedIn = false;
@@ -222,6 +234,7 @@ function formatTime (inputTime) {
   } else if (hour < 12) {
     ampm = "am"
   }
+  if (hour == 0) hour = 12;
   return [hour + ":" + minutes, ampm]
 }
 
