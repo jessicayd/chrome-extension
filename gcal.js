@@ -29,15 +29,6 @@ function getEvents () {
     };
 
     fetchEvents(init)
-    // const lastSyncToken = localStorage.getItem('lastSyncToken');
-
-    // if (lastSyncToken == null | lastSyncToken == "undefined") {
-    //   console.log("Performing full sync.");
-    //   fetchEvents(init, null);
-    // } else {
-    //   console.log("Performing incremental sync.");
-    //   fetchEvents(init, lastSyncToken);
-    // }
 
   })}
 
@@ -50,6 +41,7 @@ function getEvents () {
       // getting ids
       calendarIds = calendarListData.items.map(calendar => calendar.id);
       colors = calendarListData.items.map(calendar => calendar.backgroundColor);
+      const selected = calendarListData.items.map(calendar => calendar.selected)
 
       const now = new Date();
       const isoNow = now.toISOString();
@@ -67,12 +59,10 @@ function getEvents () {
         // } else {
           // url = `https://www.googleapis.com/calendar/v3/calendars/syncToken=${lastSyncToken}`
         // }
-
         const fetchPromise = fetch(url, init)
         .then((response) => response.json())
         .then((data) => {
           if (data.items) {
-            console.log(data.items)
             data.items.forEach((event) => {
               let startDate;
               let endDate;
@@ -111,9 +101,6 @@ function getEvents () {
         });
         fetchPromises.push(fetchPromise);
       }
-      // const nextSyncToken = calendarListData.nextSyncToken
-      // localStorage.setItem('lastSyncToken', nextSyncToken);
-      // console.log(nextSyncToken)
 
 
       Promise.all(fetchPromises)
@@ -123,8 +110,6 @@ function getEvents () {
 
         sortedTimes = Array.from(sortedMap.keys()).slice(0, index);
         sortedEvents = Array.from(sortedMap.values()).slice(0, index);
-        console.log(sortedTimes);
-        console.log(sortedEvents);
 
         document.getElementById('gcal-signout').style.display = "inline";
         document.getElementById('gcal-signin').innerHTML = "refresh";
@@ -140,14 +125,12 @@ function getEvents () {
           let totalTime
           let totalEndDate
           let allDay = false
-          console.log(formattedStartTime)
+  
           if (formattedStartTime === null) {
-            console.log(" all day");
             totalTime = "all-day";
             totalEndDate = "";
             allDay = true;
           } else {
-            console.log("timed");
             totalTime = formattedStartTime[0] + formattedStartTime[1] + " - " + formattedEndTime[0] + formattedEndTime[1];
             totalEndDate = formattedEndDate[1]+ " " + formattedEndDate[2];
           }
