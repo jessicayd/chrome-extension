@@ -393,10 +393,11 @@ h3 {
     font-family: 'Inter', sans-serif;
     color: #A99486;
     display: flex;
+    white-space: nowrap;
 }
 
 .calendar-icon {
-    width: 0.75em;
+    min-width: 0.75em;
     height: 0.75em;
     background-color: #DB5F5F;
     margin-right: 10px;
@@ -411,7 +412,6 @@ h3 {
 
 .location {
     padding-left: 10px;
-    min-width: 15em;
     white-space: nowrap;
     padding-right: 10px;
 }
@@ -420,7 +420,7 @@ h3 {
     margin: 0;
     font-size: 1.1em;
     font-family: 'Inter', sans-serif;
-    max-width: 15em;
+    
 }
 
 
