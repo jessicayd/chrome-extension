@@ -114,7 +114,7 @@ function getEvents () {
         document.getElementById('gcal-signout').style.display = "inline";
         document.getElementById('gcal-signin').innerHTML = "refresh";
 
-        document.querySelector("#no-events").style.display = "block";
+        document.querySelector("#no-events").style.display = "flex";
         for (let i = 0; i < sortedTimes.length; i++) {
           if (i != 0) {
             if (sortedTimes[i-1][0] == sortedTimes[i][0]) {
@@ -129,6 +129,7 @@ function getEvents () {
           const formattedEndTime = formatTime(sortedTimes[i][3])
 
           document.querySelector('#event-description' + i).href = `https://calendar.google.com/calendar/u/${email}/r/week/${sortedTimes[i][0].split('-').join('/')}`
+          document.querySelector('#event-description' + i).target = "_blank";
 
           const totalStartDate = formattedStartDate[1] + " " + formattedStartDate[2];
           
