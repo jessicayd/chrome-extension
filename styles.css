@@ -35,6 +35,11 @@ h2 {
     margin-right: 20px;
 }
 
+.load-gif {
+    margin-top: 10px;
+    width:30px;
+    opacity: 50%;
+}
 
 /* search bar */
 form {
@@ -280,6 +285,7 @@ h3 {
     border:solid;
     height:400px;
     width: 48em;
+    align-items: center;
     background-color: #E5DBD1;
     border: 1px solid #755F57;
     padding: 1em;
@@ -311,6 +317,7 @@ h3 {
 }
 
 #no-events {
+    display: none;
     background-color: #F4F1E7;
     padding: 1em;
     margin: 0.5em auto;
