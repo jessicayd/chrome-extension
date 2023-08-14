@@ -245,4 +245,5 @@ document.addEventListener("DOMContentLoaded", function() {
   if (isSignedIn) {
     getEvents();
   }
+  else document.querySelector("#slides-load").style.display = "none";
 });
