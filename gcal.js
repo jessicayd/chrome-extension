@@ -160,7 +160,7 @@ function getEvents () {
           if (allDay) {
             document.querySelector('#all-day' + i).style.display = "flex" ;
           }
-          document.querySelector('#event-title' + i).innerHTML = sortedEvents[i][0];
+          document.querySelector('#event-title' + i).innerHTML = `${sortedEvents[i][0]} &nbsp;&nbsp;`;
           document.querySelector('#location' + i).innerHTML = sortedEvents[i][1] ? sortedEvents[i][1] : '';
           document.querySelector('#calendar-icon' + i).style.backgroundColor = sortedEvents[i][2];
         }
