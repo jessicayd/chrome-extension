@@ -345,7 +345,7 @@ h3 {
     border-radius: 10px;
     color: #A99486;
     text-align: left;
-    padding-left: 1em;
+    padding-left: 1.5em;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -354,6 +354,7 @@ h3 {
 .event-date {
     visibility: visible;
     padding-right:1.2em;
+    padding-left: 1.5em;
     margin-right:1em;
 }
 
