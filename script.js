@@ -67,7 +67,7 @@ function createIcon(url, containerName, id, name) {
     link.href = localStorage.getItem(`${id}_url`);
 
     let icon = document.createElement('img');
-    icon.src = 'images/icon.png';
+    icon.src = 'src/static/icon.png';
     icon.className = 'icon-image';
     icon.alt = 'icon'; 
 
