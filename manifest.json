@@ -5,15 +5,13 @@
     "version": "1.0",
     "action": {
       "default_popup": "index.html",
-      "default_icon": "images/search.png"
+      "default_icon": "src/static/search.png"
     },
     "chrome_url_overrides" : {
       "newtab": "index.html"
     },
     "permissions": [
-      "identity",
-      "https://www.googleapis.com/",
-      "https://apidata.googleusercontent.com/caldav/v2/calid/user"
+      "identity"
     ],
     "oauth2": {
       "client_id": "62675902440-qoi2mje2tj9oc2gebsd1i4gu22pc5etm.apps.googleusercontent.com",

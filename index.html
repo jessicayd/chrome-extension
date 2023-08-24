@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>New Tab</title>
-    <link rel="icon" href="images/bear.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="src/static/bear.png" type="image/png">
+    <link rel="stylesheet" href="src/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="icon-container" id="icons">
         <button class="add" id="leftAdd">+</button>
     </div>
+
     <div id="middle">
         <div id="mainContent">
             <div id="current">
-                <h1 id="time"><img class="load-gif" src="images/load.gif"><h1 id="ampm"></h1></h1>
+                <h1 id="time"><img class="load-gif" src="src/static/load.gif"><h1 id="ampm"></h1></h1>
             </div>
             <h2 id="date">&nbsp;</h2>
             <form method="GET" action="https://www.google.com/search">
                 <input id="search-bar" name="q" type="text" autocomplete="off" placeholder="search the web">
-                <img src="images/search.png" id="search-icon" />
+                <img src="src/static/search.png" id="search-icon" />
             </form>
         </div>
+
         <div class="slideshow">
             <div class="prev-button">
                 <button id="prev">
@@ -36,87 +39,13 @@
                     </svg>
                 </button>
             </div>
+
             <div class="slide calendar" id="events-container">
                 <span><button class="gcal-buttons" id="gcal-signin">sign in to google calendar</button><button class="gcal-buttons" id="gcal-signout">sign out</button></span>
-                <img id="slides-load" class="load-gif" src="images/load.gif">
+                <img id="slides-load" class="load-gif" src="src/static/load.gif">
                 <div id="no-events">no upcoming events for next two weeks</div>
-                <div class="event" id="event0" id="event-date0">
-                    <div class="event-date">
-                        <h3 id="day-type0">&nbsp;</h3>
-                        <h2 id="day0">&nbsp;</h2>
-                    </div>
-                    <a class="event-description" id="event-description0">
-                        <h2 id="event-title0">&nbsp;</h2>
-                        <div class="event-details">
-                            <div class="calendar-icon" id="calendar-icon0"></div>
-                            <h3 id="time0">&nbsp;</h3>
-                            <div class="all-day-icon" id="all-day0">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="location" id="location0">reminder</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="event" id="event1">
-                    <div class="event-date" id="event-date1">
-                        <h3 id="day-type1">&nbsp;</h3>
-                        <h2 id="day1">&nbsp;</h2>
-                    </div>
-                    <a class="event-description" id="event-description1">
-                        <h2 id="event-title1">&nbsp;</h2>
-                        <div class="event-details">
-                            <div class="calendar-icon" id="calendar-icon1"></div>
-                            <h3 id="time1">&nbsp;</h3>
-                            <div class="all-day-icon" id="all-day1">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="location" id="location1">not fixed</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="event" id="event2">
-                    <div class="event-date" id="event-date2">
-                        <h3 id="day-type2">&nbsp;</h3>
-                        <h2 id="day2">&nbsp;</h2>
-                    </div>
-                    <a class="event-description" id="event-description2">
-                        <h2 id="event-title2">&nbsp;</h2>
-                        <div class="event-details">
-                            <div class="calendar-icon" id="calendar-icon2"></div>
-                            <h3 id="time2">&nbsp;</h3>
-                            <div class="all-day-icon" id="all-day2">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="location" id="location2">hello</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="event" id="event3">
-                    <div class="event-date" id="event-date3">
-                        <h3 id="day-type3">&nbsp;</h3>
-                        <h2 id="day3">&nbsp;</h2>
-                    </div>
-                    <a class="event-description" id="event-description3">
-                        <h2 id="event-title3">&nbsp;</h2>
-                        <div class="event-details">
-                            <div class="calendar-icon" id="calendar-icon3"></div>
-                            <h3 id="time3">&nbsp;</h3>
-                            <div class="all-day-icon" id="all-day3">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="location" id="location3">las vegas</h3>
-                        </div>
-                    </a>
-                </div>
             </div>
+
             <div class="slide notepad">
                 <div contenteditable="true" id="notes">hi</div> 
             </div>
@@ -126,7 +55,7 @@
                     <h3 class="score" id="high-score">0</h3>
                     <h3>current score:</h3>
                     <h3 class="score" id="current-score">0</h3>
-                    <img src="images/snake.png" id="snake-icon" />
+                    <img src="src/static/snake.png" id="snake-icon" />
                 </div>
                 <div class="game-area">
                     <canvas id="snake-game" width="400" height="400"></canvas>
@@ -139,6 +68,7 @@
                     </button>
                 </div>
             </div>
+
             <div class="slide type-test" id="type-test">
                 <div id="topbar">
                     <span class="typers">time: <span id="timer">00:00.0</span>s</span> 
@@ -150,8 +80,9 @@
                 </div>
                 <div id="typing-quote"></div>
                 <textarea rows=3 id="typing-type" placeholder="type to start test"></textarea>
-                <img src="images/turtle.png" id="turtle"/>
+                <img src="src/static/turtle.png" id="turtle"/>
             </div>
+
             <div class="next-button">
                 <button id="next">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg">
@@ -171,15 +102,16 @@
         
         
     </div>
+
     <div class="icon-container" id="icons2">
         <button class="add" id="rightAdd">+</button>
     </div>
-    <script src="script.js"></script>
-    <script src="snake.js"></script>
-    <script src="slides.js"></script>
-    <script src="type.js"></script>
-    <script src="gcal.js"></script>
-    <!-- <script src="gcal.js"></script> -->
+
+    <script src="src/js/base.js"></script>
+    <script src="src/js/snake.js"></script>
+    <script src="src/js/slides.js"></script>
+    <script src="src/js/type.js"></script>
+    <script src="src/js/gcal.js"></script>
 
 </body>
 </html>
