@@ -1,4 +1,4 @@
-# chrome-extension
+# chrome-extension 🧸
 ## description
 chrome extension intended to work as the default new tab / homepage site for google chrome with several productivity features
 
