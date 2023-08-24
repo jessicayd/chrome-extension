@@ -5,6 +5,59 @@ let sortedMap = new Map();
 let isSignedIn = false;
 if (localStorage.getItem('gcal-signed-in') == "true") isSignedIn = true;
 
+function createEventHolders() {
+  let container = document.getElementById('events-container');
+
+  for (let i = 0; i < 4; i++) {
+    let event = document.createElement('div');
+    event.className = "event";
+    event.id = `event${i}`;
+
+    let eventDate = document.createElement('div');
+    eventDate.className = 'event-date';
+    eventDate.id = `event-date${i}`;
+    let dayType = document.createElement('h3');
+    dayType.id = `day-type${i}`;
+    dayType.innerHTML = '&nbsp;';
+    let day = document.createElement('h2');
+    day.id = `day${i}`;
+    day.innerHTML = '&nbsp;';
+    eventDate.appendChild(dayType);
+    eventDate.appendChild(day);
+
+    let eventDescription = document.createElement('a');
+    eventDescription.className = "event-description";
+    eventDescription.id = `event-description${i}`;
+    let eventTitle = document.createElement('h2');
+    eventTitle.id = `event-title${i}`;
+    let eventDetails = document.createElement('div');
+    eventDetails.className = 'event-details';
+
+    let calendarIcon = document.createElement('div');
+    calendarIcon.className = 'calendar-icon';
+    calendarIcon.id = `calendar-icon${i}`;
+    let time = document.createElement('h3');
+    time.id = `time${i}`;
+    let allDayIcon = document.createElement('img');
+    allDayIcon.src = "src/static/star.png";
+    allDayIcon.className = "all-day-icon";
+    allDayIcon.id = `all-day${i}`;
+    let location = document.createElement('h3');
+    location.className = 'location';
+    location.id = `location${i}`;
+    eventDetails.appendChild(calendarIcon);
+    eventDetails.appendChild(time);
+    eventDetails.appendChild(allDayIcon);
+    eventDetails.appendChild(location);
+    eventDescription.appendChild(eventTitle);
+    eventDescription.appendChild(eventDetails);
+    
+    event.appendChild(eventDate);
+    event.appendChild(eventDescription);
+    container.appendChild(event);
+    console.log("hi")
+  }
+}
 
 function getEvents () {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
@@ -200,6 +253,7 @@ document.getElementById('gcal-signout').addEventListener('click', function() {
         localStorage.setItem('gcal-signed-in',"false");
         isSignedIn = false;
         document.getElementById('gcal-signout').style.display = "none";
+        document.getElementById('no-events').style.display = "none";
         document.getElementById('gcal-signin').innerHTML = "sign in to google calendar";
 
         for (let i = 0; i < 4; i++) {
@@ -242,6 +296,8 @@ function formatTime (inputTime) {
 
 // on load
 document.addEventListener("DOMContentLoaded", function() {
+  createEventHolders();
+
   if (isSignedIn) {
     getEvents();
   }

@@ -20,7 +20,7 @@ let hasFailed = false;
 
 // gets paragraph and sets initializing stuff for reset
 const loadQuote = async () => {
-    const response = await fetch("./quotes.json");
+    const response = await fetch("../src/static/quotes.json");
     let data = await response.json();
     quote = data[Math.floor(Math.random() * data.length)].text; // random quote kinda
 
