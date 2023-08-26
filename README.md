@@ -1,7 +1,7 @@
-# Chrome New Tab Extension 🧸
-Enhance your Chrome browsing experience with our Chrome Extension, a versatile tool crafted to function as your default new tab and homepage for Google Chrome. This extension offers a range of productivity-enhancing features, along with engaging mini-games to provide both utility and entertainment.
+# chrome new tab extension 🧸
+This Chrome Extension was built to replace the default new tab page and homepage for Google Chrome. It offers a range of productivity-enhancing features, along with engaging mini-games to provide both utility and entertainment!
 
-## Installation
+## installation
 1. Clone this repository or download the ZIP file.
 2. Open Google Chrome.
 3. Go to `chrome://extensions/`.
@@ -9,23 +9,23 @@ Enhance your Chrome browsing experience with our Chrome Extension, a versatile t
 5. Click on "Load unpacked" button.
 6. Select the folder containing this extension's files.
 
-## Features
-- Swift access to Google search bar.
-- Real-time display of precise date and time, including seconds.
-- Manageable bookmarks sections for frequently visited sites, customizable with additions and deletions.
-  - Easily add, remove, and modify your bookmarked links.
-- Dynamic slideshow widget with multiple components:
-  - Sign in to your Google account to preview upcoming events from Google Calendar, color-coded by calendar and sorted chronologically.
+## features
+- Google search bar
+- Display of precise date and time, including seconds
+- Bookmarks sections for frequently visited sites
+  - Supports functionality to add, remove, and modify your bookmarked links
+- Slideshow widget with multiple components:
+  - Sign in to your Google account to preview upcoming events from Google Calendar, color-coded by calendar and sorted chronologically
   - 'Notes' sheet to stash quick ideas
-  - Enjoyable snake game to pass the time.
-  - Typing speed test to gauge your words per minute (WPM) typing rate.
+  - Snake game to pass the time
+  - Typing speed test to gauge your words per minute typing speed
  
-## Displays
+## displays
 <img width="400" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/6f92f7a1-b012-4579-a2ad-e597e2631c4d">
 <img width="400" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/3c327f22-6aaf-4b7b-b0f3-d17d749bc0bf">
 <img width="400" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/b8ad3c11-366f-465b-8265-02fd18163020">
 <img width="400" alt="image" src="https://github.com/jessicayd/chrome-extension/assets/105768635/bee7ff12-e1ab-4933-8e5d-10ddda0ad178">
 
-## Contributors
+## contributors
 - Jessica Dong
 - Serena Hwang
