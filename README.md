@@ -1,5 +1,5 @@
 # Chrome New Tab Extension 🧸
-Elevate your Chrome browsing experience with our Chrome Extension, a versatile extension designed to serve as your default new tab and homepage for Google Chrome, featuring several productivity-enhancing features.
+Enhance your Chrome browsing experience with our Chrome Extension, a versatile tool crafted to function as your default new tab and homepage for Google Chrome. This extension offers a range of productivity-enhancing features, along with engaging mini-games to provide both utility and entertainment.
 
 ## Installation
 1. Clone this repository or download the ZIP file.
