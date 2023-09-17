@@ -63,6 +63,7 @@ function getEvents () {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
 
     if (chrome.runtime.lastError) {
+      console.log("runtime error")
       return;
     }
   

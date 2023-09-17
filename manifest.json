@@ -14,7 +14,7 @@
       "identity"
     ],
     "oauth2": {
-      "client_id": "62675902440-qoi2mje2tj9oc2gebsd1i4gu22pc5etm.apps.googleusercontent.com",
+      "client_id": "665893699441-0gfhmj6blit4v1d69s7t9gagoi0kvuap.apps.googleusercontent.com",
       "scopes": ["https://www.googleapis.com/auth/calendar.readonly"]
   }
 }
