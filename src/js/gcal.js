@@ -55,7 +55,6 @@ function createEventHolders() {
     event.appendChild(eventDate);
     event.appendChild(eventDescription);
     container.appendChild(event);
-    console.log("hi")
   }
 }
 
@@ -64,6 +63,7 @@ function getEvents () {
 
     if (chrome.runtime.lastError) {
       console.log("runtime error")
+      console.log(chrome.runtime.lastError)
       return;
     }
   

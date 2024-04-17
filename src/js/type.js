@@ -122,9 +122,6 @@ const updateTimer = () => {
         count.innerText = quoteLength - charCount;
         let left = Math.min(width, width / quoteLength * charCount);
         turtle.style.left = `${left}px`;
-
-        console.log(width);
-        console.log(left);
     }
 
     const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${deciseconds}`;
