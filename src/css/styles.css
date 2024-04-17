@@ -379,6 +379,7 @@ h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.8em;
     margin-top: -3px;
+    font-weight: 500;
 }
 
 .event-description:hover, .event-description:active, .event-description:focus {
